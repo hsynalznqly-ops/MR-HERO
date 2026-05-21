@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة مهارات الاتصال والتفاوض</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{
+  --p:#1a365d;--p2:#2d4a7a;--s:#0d9488;--s2:#14b8a6;--a:#d97706;--a2:#f59e0b;
+  --bg:#f0f4f8;--bg2:#e2e8f0;--tx:#0f172a;--cb:#fff;--cb2:#f8fafc;
+  --bd:#cbd5e1;--ok:#059669;--no:#dc2626;--wn:#d97706;
+  --lb:#ccfbf1;--mt:#64748b;--glow:rgba(13,148,136,.15);
+}
+.dk{
+  --p:#0c1e3a;--p2:#162d50;--s:#2dd4bf;--s2:#5eead4;--a:#fbbf24;--a2:#fcd34d;
+  --bg:#0a0f1a;--bg2:#111827;--tx:#f1f5f9;--cb:#1a2332;--cb2:#1e293b;
+  --bd:#2d3f56;--ok:#34d399;--no:#f87171;--wn:#fbbf24;
+  --lb:#042f2e;--mt:#94a3b8;--glow:rgba(45,212,191,.1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;min-height:100vh;display:flex;flex-direction:column;transition:background .5s,color .5s;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:-1;
+  background:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(13,148,136,.07),transparent),radial-gradient(ellipse 60% 50% at 80% 90%,rgba(217,119,6,.05),transparent),var(--bg);transition:background .5s}
+
+.geo-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.geo-shape{position:absolute;border:2px solid;border-radius:50%;opacity:.04;animation:geoFloat 20s infinite ease-in-out}
+.geo-shape:nth-child(1){width:300px;height:300px;top:10%;left:5%;border-color:var(--s);animation-delay:0s}
+.geo-shape:nth-child(2){width:200px;height:200px;top:60%;right:10%;border-color:var(--a);animation-delay:-7s;border-radius:30%}
+.geo-shape:nth-child(3){width:150px;height:150px;bottom:20%;left:30%;border-color:var(--p2);animation-delay:-14s}
+@keyframes geoFloat{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-30px) rotate(5deg)}50%{transform:translateY(15px) rotate(-3deg)}75%{transform:translateY(-20px) rotate(2deg)}}
+
+header{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;padding:.85rem 1.5rem;display:flex;justify-content:space-between;align-items:center;z-index:100;position:sticky;top:0;box-shadow:0 4px 30px rgba(0,0,0,.25)}
+footer{background:linear-gradient(135deg,var(--p2),var(--p));color:rgba(255,255,255,.8);padding:.75rem 1.5rem;text-align:center;font-weight:700;letter-spacing:1px;font-size:.85rem;border-top:3px solid var(--s);z-index:100}
+.logo{display:flex;align-items:center;gap:12px;font-weight:900;font-size:1.1rem;color:#fff}
+.logo-icon{width:42px;height:42px;background:linear-gradient(135deg,var(--s),var(--s2));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 4px 15px rgba(13,148,136,.4);animation:logoPulse 3s infinite ease-in-out}
+@keyframes logoPulse{0%,100%{box-shadow:0 4px 15px rgba(13,148,136,.4)}50%{box-shadow:0 4px 25px rgba(13,148,136,.6)}}
+.hact{display:flex;gap:8px}
+.ib{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:1.1rem;cursor:pointer;padding:9px 14px;border-radius:10px;transition:all .3s;backdrop-filter:blur(5px)}
+.ib:hover{background:rgba(255,255,255,.18);border-color:var(--s2);transform:translateY(-2px)}
+
+main{flex:1;padding:2rem;max-width:1100px;margin:0 auto;width:100%}
+.sec{display:none;animation:fadeSlide .5s ease}.sec.on{display:block}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.dash-hero{text-align:center;padding:40px 20px 30px;position:relative}
+.dash-hero h2{font-size:1.8rem;font-weight:900;color:var(--p);margin-bottom:8px}
+.dk .dash-hero h2{color:var(--s2)}
+.dash-hero p{color:var(--mt);font-size:1.05rem;max-width:600px;margin:0 auto}
+.dash-hero::after{content:'';display:block;width:80px;height:4px;background:linear-gradient(90deg,var(--s),var(--a));border-radius:2px;margin:20px auto 0}
+.dg{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;margin-top:10px}
+.dc{background:var(--cb);border-radius:18px;padding:28px;box-shadow:0 8px 30px rgba(0,0,0,.06);cursor:pointer;transition:all .4s;display:flex;flex-direction:column;position:relative;overflow:hidden;border:1px solid var(--bd)}
+.dc::before{content:'';position:absolute;top:0;right:0;width:100%;height:4px;background:linear-gradient(90deg,var(--s),var(--a));transition:height .4s}
+.dc:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,.12);border-color:var(--s)}
+.dc:hover::before{height:6px}
+.dc .ic{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:18px;transition:transform .3s}
+.dc:nth-child(1) .ic{background:linear-gradient(135deg,#ccfbf1,#99f6e4);color:#0d9488}
+.dc:nth-child(2) .ic{background:linear-gradient(135deg,#fef3c7,#fde68a);color:#d97706}
+.dc:nth-child(3) .ic{background:linear-gradient(135deg,#dbeafe,#bfdbfe);color:#1a365d}
+.dc:nth-child(4) .ic{background:linear-gradient(135deg,#fce7f3,#fbcfe8);color:#be185d}
+.dk .dc:nth-child(1) .ic{background:linear-gradient(135deg,#042f2e,#064e3b);color:#2dd4bf}
+.dk .dc:nth-child(2) .ic{background:linear-gradient(135deg,#451a03,#78350f);color:#fbbf24}
+.dk .dc:nth-child(3) .ic{background:linear-gradient(135deg,#172554,#1e3a5f);color:#93c5fd}
+.dk .dc:nth-child(4) .ic{background:linear-gradient(135deg,#500724,#831843);color:#f9a8d4}
+.dc:hover .ic{transform:scale(1.1) rotate(-5deg)}
+.dc h3{font-size:1.15rem;margin-bottom:8px;color:var(--p);font-weight:800}
+.dk .dc h3{color:var(--tx)}
+.dc p{font-size:.9rem;color:var(--mt);flex:1;margin-bottom:16px;line-height:1.8}
+
+.b{display:inline-flex;align-items:center;justify-content:center;padding:10px 22px;border-radius:12px;border:none;cursor:pointer;font-family:'Cairo';font-weight:700;font-size:.92rem;transition:all .3s;gap:8px;position:relative;overflow:hidden}
+.b:disabled{opacity:.35;cursor:not-allowed;transform:none!important}
+.b::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.1);opacity:0;transition:opacity .3s}
+.b:hover:not(:disabled)::after{opacity:1}
+.b1{background:linear-gradient(135deg,var(--s),var(--s2));color:#fff;box-shadow:0 4px 15px rgba(13,148,136,.3)}
+.b1:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 25px rgba(13,148,136,.4)}
+.b2{background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;box-shadow:0 4px 15px rgba(217,119,6,.25)}
+.b2:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 25px rgba(217,119,6,.35)}
+.b3{background:var(--cb);border:2px solid var(--bd);color:var(--p)}
+.dk .b3{border-color:var(--bd);color:var(--tx)}
+.b3:hover:not(:disabled){border-color:var(--s);background:var(--lb)}
+.b4{background:linear-gradient(135deg,#dc2626,#ef4444);color:#fff;box-shadow:0 4px 15px rgba(220,38,38,.3)}
+.b4:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 25px rgba(220,38,38,.4)}
+.b5{background:linear-gradient(135deg,var(--ok),#10b981);color:#fff;box-shadow:0 4px 15px rgba(5,150,105,.3)}
+.b5:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 25px rgba(5,150,105,.4)}
+
+.sh{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;padding-bottom:14px;border-bottom:3px solid transparent;background-image:linear-gradient(var(--cb),var(--cb)),linear-gradient(90deg,var(--s),var(--a));background-origin:padding-box,border-box;background-clip:padding-box,border-box;border-radius:0 0 4px 4px;flex-wrap:wrap;gap:10px}
+.sh h2{color:var(--p);display:flex;align-items:center;gap:10px;font-size:1.2rem;font-weight:800}
+.dk .sh h2{color:var(--s2)}
+
+.cb{display:flex;gap:15px;margin-bottom:24px;flex-wrap:wrap}
+.ig{flex:1;min-width:200px;position:relative}
+.ig input,.ig select{width:100%;padding:14px 18px 14px 44px;border:2px solid var(--bd);border-radius:12px;background:var(--cb);color:var(--tx);font-family:'Cairo';font-size:.95rem;transition:all .3s}
+.ig input:focus,.ig select:focus{outline:none;border-color:var(--s);box-shadow:0 0 0 4px var(--glow)}
+.ig .si{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--mt);pointer-events:none}
+
+.cl{display:flex;flex-direction:column;gap:18px}
+.cc{background:var(--cb);border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,.04);border:1px solid var(--bd);transition:all .3s}
+.cc:hover{box-shadow:0 8px 30px rgba(0,0,0,.08);border-color:var(--s)}
+.cc h4{margin-bottom:12px;color:var(--p);font-weight:700;font-size:1.05rem;line-height:2}
+.dk .cc h4{color:var(--s2)}
+.ab{margin-top:14px;padding:18px;border-radius:12px;display:none;font-size:.95rem;line-height:2}
+.ab.s{background:var(--lb);border-right:4px solid var(--s)}
+.ab.f{background:#ecfdf5;border-right:4px solid var(--ok)}
+.dk .ab.s{background:#042f2e;border-right-color:var(--s)}
+.dk .ab.f{background:#052e16;border-right-color:var(--ok)}
+.ab.v{display:block;animation:slideAns .4s ease}
+@keyframes slideAns{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.bg{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+
+.es{background:var(--cb);padding:36px;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,.06);max-width:600px;margin:0 auto;border:1px solid var(--bd)}
+.fg{margin-bottom:24px}
+.fg label{display:block;margin-bottom:10px;font-weight:700;font-size:1rem;color:var(--p)}
+.dk .fg label{color:var(--s2)}
+.opt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:10px}
+.opt-btn{padding:12px;border:2px solid var(--bd);border-radius:12px;background:var(--cb2);cursor:pointer;font-family:'Cairo';font-weight:700;text-align:center;transition:all .3s;color:var(--tx);font-size:.95rem}
+.opt-btn:hover{border-color:var(--s);background:var(--lb)}
+.opt-btn.sl{border-color:var(--s);background:linear-gradient(135deg,var(--s),var(--s2));color:#fff;box-shadow:0 4px 15px rgba(13,148,136,.3)}
+
+.eh{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;padding:18px 24px;border-radius:14px;margin-bottom:20px;flex-wrap:wrap;gap:12px;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.tm{font-size:1.4rem;font-weight:900;color:var(--a2);display:flex;align-items:center;gap:8px}
+.pb{width:100%;height:8px;background:var(--bd);border-radius:4px;margin-bottom:20px;overflow:hidden}
+.pf{height:100%;background:linear-gradient(90deg,var(--s),var(--a));border-radius:4px;transition:width .4s ease;position:relative}
+.pf::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);animation:shimmer 2s infinite}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+.qc{background:var(--cb);padding:32px;border-radius:18px;box-shadow:0 6px 25px rgba(0,0,0,.05);border:1px solid var(--bd);position:relative}
+.qc::before{content:'';position:absolute;top:0;right:0;width:6px;height:100%;background:linear-gradient(180deg,var(--s),var(--a));border-radius:0 18px 18px 0}
+.qt{font-size:1.1rem;font-weight:700;margin-bottom:22px;line-height:2.1;padding-right:10px}
+.og{display:flex;flex-direction:column;gap:12px}
+.ob{padding:16px 20px;border:2px solid var(--bd);border-radius:12px;background:var(--cb2);cursor:pointer;text-align:right;font-family:'Cairo';font-size:1rem;transition:all .3s;color:var(--tx);display:flex;align-items:center;gap:12px}
+.ob:hover{border-color:var(--s);background:var(--lb);transform:translateX(-4px)}
+.ob.sl{border-color:var(--s);background:linear-gradient(135deg,rgba(13,148,136,.1),rgba(20,184,166,.05));color:var(--s);font-weight:700;box-shadow:0 4px 15px var(--glow)}
+.en{display:flex;justify-content:space-between;margin-top:28px;gap:12px;flex-wrap:wrap}
+
+.res-hero{text-align:center;background:var(--cb);padding:40px 30px;border-radius:20px;margin-bottom:24px;border:1px solid var(--bd);position:relative;overflow:hidden}
+.res-hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(13,148,136,.05),transparent 70%);animation:resGlow 4s infinite ease-in-out}
+@keyframes resGlow{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.1);opacity:1}}
+.rc{width:160px;height:160px;border-radius:50%;border:10px solid var(--ok);display:flex;flex-direction:column;justify-content:center;align-items:center;margin:0 auto 24px;font-size:2.4rem;font-weight:900;color:var(--ok);box-shadow:0 0 40px rgba(5,150,105,.2);position:relative;animation:rcAppear .8s ease}
+@keyframes rcAppear{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.rd{text-align:center;margin-bottom:28px;position:relative}
+.erc{background:#fef2f2;border-right:5px solid var(--no);padding:18px;border-radius:12px;margin-bottom:16px;transition:all .3s}
+.erc:hover{box-shadow:0 6px 20px rgba(220,38,38,.1)}
+.dk .erc{background:#1c0f0f;border-right-color:var(--no)}
+.cab{background:#ecfdf5;border-right:5px solid var(--ok);padding:14px;margin-top:12px;border-radius:10px}
+.dk .cab{background:#052e16;border-right-color:var(--ok)}
+
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-bottom:24px}
+.sc{background:var(--cb);padding:22px;border-radius:14px;text-align:center;border-top:5px solid var(--s);box-shadow:0 4px 15px rgba(0,0,0,.04);transition:all .3s}
+.sc:hover{transform:translateY(-4px);box-shadow:0 8px 25px rgba(0,0,0,.08)}
+.sc .sv{font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--s),var(--a));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sc .sl{font-size:.88rem;color:var(--mt);margin-top:4px}
+
+.badge-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:20px}
+.badge-card{background:var(--cb);padding:20px 15px;border-radius:14px;text-align:center;border:2px solid var(--bd);box-shadow:0 3px 10px rgba(0,0,0,.04);transition:all .4s}
+.badge-card.earned{border-color:var(--a);box-shadow:0 6px 25px rgba(217,119,6,.15);background:linear-gradient(135deg,var(--cb),#fffbeb)}
+.dk .badge-card.earned{background:linear-gradient(135deg,var(--cb),#451a03)}
+.badge-card:not(.earned){opacity:.35;filter:grayscale(1)}
+.badge-card i{font-size:2.8rem;margin-bottom:12px;color:var(--a)}
+.badge-card span{display:block;font-weight:700;font-size:.88rem}
+
+.chap-card{background:var(--cb);border:1px solid var(--bd);border-radius:18px;padding:28px;margin-bottom:22px;box-shadow:0 5px 20px rgba(0,0,0,.04);transition:all .3s;position:relative;overflow:hidden}
+.chap-card::before{content:'';position:absolute;top:0;right:0;width:5px;height:100%;background:linear-gradient(180deg,var(--s),var(--a));transition:width .3s}
+.chap-card:hover{box-shadow:0 10px 35px rgba(0,0,0,.1);border-color:var(--s)}
+.chap-card:hover::before{width:8px}
+.chap-title{font-size:1.3rem;font-weight:900;color:var(--p);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.dk .chap-title{color:var(--s2)}
+.chap-text{font-size:1rem;color:var(--tx);line-height:2;margin-bottom:20px}
+
+#mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(8px)}
+#mo.vi{display:flex}
+.mb{background:var(--cb);padding:32px;border-radius:20px;max-width:420px;width:100%;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,.4);animation:modalIn .3s ease;border:1px solid var(--bd)}
+@keyframes modalIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.mb p{margin-bottom:22px;font-size:1.1rem;line-height:2;font-weight:600}
+.ma{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.nr{text-align:center;padding:50px 20px;color:var(--mt)}
+.nr i{font-size:3.5rem;margin-bottom:15px;display:block;opacity:.15}
+
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--p);color:#fff;padding:14px 28px;border-radius:12px;font-family:'Cairo';font-weight:700;font-size:.95rem;z-index:9998;opacity:0;transition:all .4s;box-shadow:0 8px 30px rgba(0,0,0,.3);display:flex;align-items:center;gap:10px;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast i{color:var(--a2)}
+
+@media(max-width:768px){
+  main{padding:1rem}.dg{grid-template-columns:1fr}.qc{padding:22px}
+  .en{flex-direction:column}.en .b{width:100%}header{padding:.7rem 1rem}
+  .logo{font-size:.95rem}.logo-icon{width:36px;height:36px;font-size:1.1rem}
+  .opt-grid{grid-template-columns:repeat(3,1fr)}.dash-hero h2{font-size:1.4rem}
+  .rc{width:130px;height:130px;font-size:2rem}.es{padding:24px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--bd);border-radius:4px}::-webkit-scrollbar-thumb:hover{background:var(--mt)}
+</style>
+</head>
+<body>
+
+<div class="geo-bg" aria-hidden="true">
+  <div class="geo-shape"></div><div class="geo-shape"></div><div class="geo-shape"></div>
+</div>
+
+<div class="toast" id="toast" role="alert"><i class="fas fa-check-circle"></i><span id="toast-msg"></span></div>
+
+<header>
+  <div class="logo"><div class="logo-icon"><i class="fas fa-comments"></i></div><span>منصة مهارات الاتصال والتفاوض</span></div>
+  <div class="hact">
+    <button class="ib" id="thm" title="تبديل الوضع" aria-label="تبديل الوضع الليلي"><i class="fas fa-moon"></i></button>
+    <button class="ib" id="hom" title="الرئيسية" aria-label="الصفحة الرئيسية"><i class="fas fa-home"></i></button>
+  </div>
+</header>
+
+<div id="mo" role="dialog" aria-modal="true">
+  <div class="mb"><p id="mom"></p><div class="ma"><button class="b b4" id="moy"><i class="fas fa-check"></i> نعم، تسليم</button><button class="b b3" id="mon"><i class="fas fa-times"></i> إلغاء</button></div></div>
+</div>
+
+<main>
+
+  <!-- لوحة التحكم -->
+  <section id="dashboard" class="sec on" aria-label="لوحة التحكم الرئيسية">
+    <div class="dash-hero"><h2>لوحة التحكم التعليمية</h2><p>استعد لامتحان مادة مهارات الاتصال والتفاوض بكل ثقة واحترافية</p></div>
+    <div class="dg">
+      <div class="dc" data-s="essay"><div class="ic"><i class="fas fa-book-open"></i></div><h3>الأسئلة المقالية</h3><p>الإجابات الكاملة بالنص الحرفي من المقرر الدراسي.</p><button class="b b1" data-n="essay"><i class="fas fa-play"></i> ابدأ المراجعة</button></div>
+      <div class="dc" data-s="exam-setup"><div class="ic"><i class="fas fa-file-pen"></i></div><h3>الامتحان الشامل</h3><p>اختبر نفسك في أسئلة متنوعة تغطي المنهج بالكامل.</p><button class="b b2" data-n="exam-setup"><i class="fas fa-play"></i> ابدأ الامتحان</button></div>
+      <div class="dc" data-s="abbr"><div class="ic"><i class="fas fa-layer-group"></i></div><h3>كبسولات الفصول</h3><p>امتحن على كل فصل بشكل منفصل مع ملخص سريع.</p><button class="b b3" data-n="abbr"><i class="fas fa-search"></i> تصفح الكبسولات</button></div>
+      <div class="dc" data-s="results"><div class="ic"><i class="fas fa-chart-line"></i></div><h3>النتائج والأوسمة</h3><p>تابع درجاتك واحصل على وسام المفاوض الذهبي.</p><button class="b b3" data-n="results"><i class="fas fa-trophy"></i> عرض الإحصائيات</button></div>
+    </div>
+  </section>
+
+  <!-- الأسئلة المقالية -->
+  <section id="essay" class="sec" aria-label="الأسئلة المقالية">
+    <div class="sh"><h2><i class="fas fa-book-open" style="color:var(--s)"></i> الأسئلة المقالية</h2><button class="b b3" data-n="dashboard"><i class="fas fa-arrow-right"></i> الرئيسية</button></div>
+    <div class="cb"><div class="ig"><i class="fas fa-search si"></i><input type="text" id="esrc" placeholder="ابحث في الأسئلة المقالية..." aria-label="بحث"></div></div>
+    <div id="elist" class="cl"></div>
+  </section>
+
+  <!-- إعدادات الامتحان -->
+  <section id="exam-setup" class="sec" aria-label="إعدادات الامتحان">
+    <div class="sh"><h2><i class="fas fa-sliders" style="color:var(--a)"></i> إعدادات الامتحان</h2><button class="b b3" data-n="dashboard"><i class="fas fa-arrow-right"></i> الرئيسية</button></div>
+    <div class="es">
+      <div class="fg"><label><i class="fas fa-list-ol" style="color:var(--s);margin-left:6px"></i> عدد الأسئلة:</label><div class="opt-grid" id="qcnt-grid"></div></div>
+      <div class="fg"><label><i class="fas fa-stopwatch" style="color:var(--a);margin-left:6px"></i> وقت الامتحان:</label><div class="opt-grid" id="qtm-grid"></div></div>
+      <div class="fg"><label><i class="fas fa-filter" style="color:var(--s);margin-left:6px"></i> نوع الأسئلة:</label><div class="opt-grid" id="qtp-grid"></div></div>
+      <button class="b b1" id="goBtn" style="width:100%;font-size:1.1rem;padding:16px;margin-top:8px"><i class="fas fa-rocket"></i> ابدأ الامتحان الشامل</button>
+    </div>
+  </section>
+
+  <!-- الامتحان النشط -->
+  <section id="exam-active" class="sec" aria-label="الامتحان">
+    <div class="eh"><div><i class="fas fa-file-pen"></i> السؤال <span id="cqn">1</span> من <span id="tqn">10</span></div><div class="tm"><i class="fas fa-stopwatch"></i> <span id="tdsp">15:00</span></div></div>
+    <div class="pb" role="progressbar"><div class="pf" id="pfl" style="width:10%"></div></div>
+    <div class="qc"><div class="qt" id="qtxt"></div><div class="og" id="ogrd"></div></div>
+    <div class="en"><button class="b b3" id="pvb"><i class="fas fa-arrow-right"></i> السابق</button><button class="b b4" id="smb"><i class="fas fa-paper-plane"></i> تسليم</button><button class="b b1" id="nxb">التالي <i class="fas fa-arrow-left"></i></button></div>
+  </section>
+
+  <!-- نتيجة الامتحان -->
+  <section id="exam-result" class="sec" aria-label="نتيجة الامتحان">
+    <div class="sh"><h2><i class="fas fa-trophy" style="color:var(--a)"></i> نتيجة الامتحان</h2><button class="b b3" data-n="dashboard"><i class="fas fa-arrow-right"></i> الرئيسية</button></div>
+    <div class="res-hero">
+      <div class="rc" id="rcir"><span id="rpct">0%</span></div>
+      <div class="rd"><h3 id="revl" style="font-size:1.2rem;margin-bottom:8px"></h3><p>الصحيحة: <strong id="rcrt">0</strong> | الخاطئة: <strong id="rwrg">0</strong></p></div>
+      <div class="bg" style="justify-content:center"><button class="b b1" id="rtry"><i class="fas fa-rotate-right"></i> امتحان جديد</button><button class="b b2" id="rerv"><i class="fas fa-magnifying-glass"></i> مراجعة الأخطاء</button></div>
+    </div>
+    <div id="ercon" style="display:none" class="cl"></div>
+  </section>
+
+  <!-- كبسولات الفصول -->
+  <section id="abbr" class="sec" aria-label="كبسولات الفصول">
+    <div class="sh"><h2><i class="fas fa-layer-group" style="color:var(--s)"></i> كبسولات الفصول وامتحاناتها</h2><button class="b b3" data-n="dashboard"><i class="fas fa-arrow-right"></i> الرئيسية</button></div>
+    <div id="atbd" class="cl"></div>
+  </section>
+
+  <!-- النتائج والأوسمة -->
+  <section id="results" class="sec" aria-label="النتائج والأوسمة">
+    <div class="sh"><h2><i class="fas fa-chart-line" style="color:var(--s)"></i> النتائج والأوسمة</h2><button class="b b3" data-n="dashboard"><i class="fas fa-arrow-right"></i> الرئيسية</button></div>
+    <div class="sg" id="stg"></div>
+    <h3 style="margin:24px 0 12px;color:var(--p)"><i class="fas fa-medal" style="color:var(--a)"></i> ساحة الأوسمة</h3>
+    <div class="badge-grid" id="badges"></div>
+    <h3 style="margin:24px 0 12px;color:var(--p)"><i class="fas fa-clock-rotate-left" style="color:var(--s)"></i> سجل الامتحانات</h3>
+    <div id="hls" class="cl"></div>
+  </section>
+
+</main>
+<footer>Curated by MR.HERO</footer>
+
+<script>
+/* ==============================
+   بيانات الأسئلة المقالية
+   ============================== */
+var essayQ=[
+  {"ch":1,"id":1,"q":"عرّف الاتصال لغويًا واصطلاحيًا كما ورد في المنهج.","sa":"لغوياً: التشارك والتبادل. اصطلاحياً: عملية نقل الأفكار والمشاعر بين طرفين لتحقيق الفهم المتبادل والإقناع.","fa":"<ul><li><b>لغويًا:</b> مشتق من التشارك والتبادل وإشاعة الشيء والتفاعل المتبادل.</li><li><b>اصطلاحيًا:</b> عملية اجتماعية ديناميكية مستمرة يتم من خلالها نقل الأفكار والمعلومات والمعاني والمشاعر بين طرفين أو أكثر باستخدام رموز وقنوات مشتركة، بما يحقق الفهم المتبادل والإقناع. (ص 3)</li></ul>"},
+  {"ch":1,"id":2,"q":"اذكر العناصر الستة الرئيسية المكونة لدائرة الاتصال مع شرح مختصر لكل منها.","sa":"المرسل، المستقبل، الرسالة، القناة، التغذية الراجعة، والعوامل المعيقة.","fa":"<ul><li>1. <b>المرسل:</b> نقطة البدء ومصدر الرسالة.</li><li>2. <b>المستقبل:</b> الجهة المستهدفة بالرسالة ويتولى فك الرموز.</li><li>3. <b>الرسالة:</b> الأفكار أو المعاني المصاغة في رموز.</li><li>4. <b>القناة:</b> الطريق الذي تعبر من خلاله الرسالة.</li><li>5. <b>التغذية الراجعة:</b> استجابة المستقبل للمرسل.</li><li>6. <b>العوامل المعيقة:</b> المؤثرات التي تشوه الرسالة. (ص 4)</li></ul>"},
+  {"ch":1,"id":3,"q":"قارن بين الاتصال اللفظي والاتصال غير اللفظي.","sa":"اللفظي يعتمد على الكلمات المنطوقة والمكتوبة لنقل المعاني بدقة، بينما غير اللفظي يعتمد على الإشارات ولغة الجسد لعكس المشاعر.","fa":"<ul><li><b>الاتصال اللفظي:</b> يعتمد على الكلمات المنطوقة والمكتوبة، ويتميز بالدقة العالية.</li><li><b>الاتصال غير اللفظي:</b> لا يعتمد على الألفاظ بل يرتكز على تعبيرات الوجه ولغة الجسد، ويتميز بأنه أكثر عمقاً في عكس المشاعر. (ص 8-11)</li></ul>"},
+  {"ch":2,"id":4,"q":"اشرح عوائق الاتصال الأربعة الرئيسية مدعماً إجابتك بأمثلة.","sa":"نفسية وسلوكية، لغوية ودلالية، مادية وبيئية، وتنظيمية وإدارية.","fa":"<ul><li>1. <b>عوائق نفسية وسلوكية:</b> الأحكام المسبقة، عدم الثقة، التوتر.</li><li>2. <b>عوائق لغوية:</b> مصطلحات غامضة أو لغة معقدة.</li><li>3. <b>عوائق مادية:</b> الضوضاء، التباعد المكاني، أعطال الأجهزة.</li><li>4. <b>عوائق تنظيمية:</b> تعقد الهيكل الإداري وتعدد المستويات. (ص 15)</li></ul>"},
+  {"ch":3,"id":5,"q":"تحدث عن اتجاهات وقنوات الاتصال الرسمي الثلاثة في بيئة العمل.","sa":"اتصالات هابطة، اتصالات صاعدة، واتصالات أفقية.","fa":"<ul><li>1. <b>اتصالات هابطة:</b> تتدفق من الإدارة العليا إلى المرؤوسين (توجيهات ولوائح).</li><li>2. <b>اتصالات صاعدة:</b> تتدفق من المرؤوسين إلى الإدارة العليا (تقارير وشكاوى).</li><li>3. <b>اتصالات أفقية:</b> بين الزملاء في نفس المستوى الإداري للتنسيق. (ص 25-26)</li></ul>"},
+  {"ch":4,"id":6,"q":"وضح الفارق الجوهري بين التفاوض والمساومة.","sa":"المساومة تنافسية شرسة (مكسب/خسارة)، بينما التفاوض تعاوني إقناعي (مكسب/مكسب).","fa":"<ul><li><b>التفاوض:</b> عملية تعاونية إقناعية تعتمد على دراسة المصالح العميقة وبناء شراكات (مكسب/مكسب).</li><li><b>المساومة:</b> عملية تنافسية شرسة تركز على المطالب السطحية وتعتمد على الضغط (مكسب/خسارة). (ص 34)</li></ul>"}
+];
+
+/* ==============================
+   بيانات أسئلة الاختيار والصح/خطأ
+   ============================== */
+var quizQ=[
+  {"ch":1,"t":"mc","q":"ترجع كلمة الاتصال لغويًا إلى معنى:","o":["الصراع","المشاركة والتفاعل المتبادل","الانعزال","السيطرة"],"c":1,"e":"كلمة الاتصال ترتبط بمعنى المشاركة والتفاعل المتبادل. (ص 3-12)"},
+  {"ch":1,"t":"tf","q":"مهارات الاتصال تعني فقط القدرة على التحدث بطلاقة أمام الآخرين.","o":["صح","خطأ"],"c":1,"e":"مهارات الاتصال تشمل نقل الرسائل بوضوح والاستماع الفعال ولغة الجسد وضبط نبرة الصوت وليس التحدث فقط."},
+  {"ch":1,"t":"mc","q":"من أهداف الاتصال:","o":["زيادة العزلة","تعطيل التعاون","تكوين صداقات وبناء علاقات جيدة","إلغاء التعبير عن المشاعر"],"c":2,"e":"تكوين الصداقات وبناء العلاقات الجيدة ضمن أهداف الاتصال."},
+  {"ch":1,"t":"tf","q":"الاتصال عملية عشوائية لا ترتبط بأهداف محددة.","o":["صح","خطأ"],"c":1,"e":"الاتصال نشاط هادف ومقصود."},
+  {"ch":1,"t":"mc","q":"من أهمية الاتصال أنه يساعد على:","o":["تعقيد العلاقات","تبادل المعرفة والخبرات والتعلم المستمر","تقليل الثقة بالنفس","إضعاف التعاون"],"c":1,"e":"تبادل المعرفة والخبرات ضمن أهمية الاتصال."},
+  {"ch":1,"t":"tf","q":"من عناصر الاتصال الأساسية التغذية الراجعة.","o":["صح","خطأ"],"c":0,"e":"التغذية الراجعة استجابة المستقبل التي تساعد المرسل على تقييم فهم الرسالة."},
+  {"ch":1,"t":"mc","q":"القناة في عملية الاتصال تعني:","o":["الشخص الذي يستقبل الرسالة","الوسيلة التي يتم من خلالها إرسال الرسالة","الفكرة النهائية فقط","العائق الخارجي فقط"],"c":1,"e":"القناة هي الوسيلة أو الطريق الذي يتم من خلاله إرسال الرسالة."},
+  {"ch":1,"t":"tf","q":"الضوضاء والاختلافات الثقافية من العوامل المعيقة في عملية الاتصال.","o":["صح","خطأ"],"c":0,"e":"الضوضاء والاختلافات الثقافية واللغوية ضمن العوامل المعيقة."},
+  {"ch":1,"t":"mc","q":"عندما يكون المرسل فردًا والمستقبل جماعة، فالمثال المناسب هو:","o":["مفاوضات بين فريقين","لجنة مقابلة مع مرشح","محاضر أمام طلابه","اتصال شخصي بين شخصين"],"c":2,"e":"المحاضر أمام طلابه مثال لهذه الصورة من الاتصال."},
+  {"ch":1,"t":"tf","q":"مفاوضات بين فريقين تُعد مثالًا لاتصال جماعة مع جماعة.","o":["صح","خطأ"],"c":0,"e":"ورد هذا المثال ضمن أنواع الاتصال حسب عدد الأفراد."},
+  {"ch":1,"t":"mc","q":"الاتصال اللفظي يتم من خلال:","o":["الإشارات فقط","الكلمات المنطوقة والمكتوبة","الروائح فقط","المسافات فقط"],"c":1,"e":"الاتصال اللفظي يستخدم الألفاظ والكلمات المنطوقة والمكتوبة."},
+  {"ch":1,"t":"tf","q":"الاتصال الشفهي يسمح بالتعرف على ردود أفعال متلقي الرسالة بصورة مباشرة.","o":["صح","خطأ"],"c":0,"e":"الاتصال الشفهي يسمح بمعرفة ردود الأفعال مباشرة."},
+  {"ch":1,"t":"mc","q":"من أمثلة الاتصال الكتابي:","o":["التقارير والمذكرات والرسائل","تعبيرات الوجه فقط","نظرات العيون فقط","اللمس فقط"],"c":0,"e":"التقارير والمذكرات والرسائل ضمن الاتصال الكتابي."},
+  {"ch":1,"t":"tf","q":"من مزايا الاتصال الكتابي إمكانية الرجوع إليه مستقبلًا.","o":["صح","خطأ"],"c":0,"e":"الاتصالات المكتوبة يمكن الرجوع إليها في المستقبل."},
+  {"ch":1,"t":"mc","q":"لكي يكون الاتصال الكتابي فعالًا يجب أن تكون الكتابة:","o":["غامضة ومختصرة","مليئة بالألفاظ المضللة","كاملة وواضحة وخالية من الأخطاء","عاطفية وغير دقيقة"],"c":2,"e":"اكتمال المعلومات ووضوح العرض وحسن الصياغة وتجنب الأخطاء."},
+  {"ch":1,"t":"tf","q":"البريد الصوتي والبريد الإلكتروني من وسائل الاتصال الإلكتروني.","o":["صح","خطأ"],"c":0,"e":"البريد الصوتي والإلكتروني ضمن أمثلة الاتصال الإلكتروني."},
+  {"ch":1,"t":"mc","q":"من خصائص الاتصال الإلكتروني أنه:","o":["ينقل كمًا محدودًا","أبطأ من الوسائل التقليدية","يسمح بنقل كم هائل من المعلومات بسرعة","لا يصلح إلا لفرد واحد"],"c":2,"e":"الاتصالات الحديثة تنقل كمًا هائلًا من المعلومات بشكل أسرع."},
+  {"ch":1,"t":"tf","q":"الاتصال غير اللفظي لا يعتمد على اللغة المنطوقة أو المكتوبة.","o":["صح","خطأ"],"c":0,"e":"الاتصال غير اللفظي لا يعتمد على الألفاظ أو اللغة المنطوقة والمكتوبة."},
+  {"ch":1,"t":"mc","q":"من أمثلة الاتصال غير اللفظي:","o":["الإشارات والإيماءات وتعبيرات الوجه","المقالات والتقارير فقط","الرسائل النصية فقط","المذكرات فقط"],"c":0,"e":"الإشارات والإيماءات وتعبيرات الوجه من أشكال الاتصال غير اللفظي."},
+  {"ch":1,"t":"tf","q":"لغة الجسم لغة عالمية يفهمها البشر رغم اختلاف اللغات.","o":["صح","خطأ"],"c":0,"e":"لغة الجسم لغة عالمية يفهمها جميع البشر."},
+  {"ch":1,"t":"mc","q":"أي مما يلي يدخل ضمن أنواع الاتصال غير اللفظي؟","o":["العينان","تعبيرات الوجه","المسافات","جميع ما سبق"],"c":3,"e":"العينان وتعبيرات الوجه والمسافات ضمن أنواع الاتصال غير اللفظي."},
+  {"ch":1,"t":"tf","q":"تجنب النظر إلى المتحدث من المفردات الرديئة في لغة الجسد.","o":["صح","خطأ"],"c":0,"e":"تجنب النظر للمتحدث ضمن مفردات لغة الجسد الرديئة."},
+  {"ch":1,"t":"mc","q":"من مفردات لغة الجسد الرديئة:","o":["النقر بالأصابع","اللعب بالمفاتيح","قضم الأظافر","جميع ما سبق"],"c":3,"e":"هذه السلوكيات ضمن مفردات لغة الجسد الرديئة."},
+  {"ch":1,"t":"tf","q":"الاتصال الرسمي يتبع قنوات رسمية وله بروتوكولات محددة.","o":["صح","خطأ"],"c":0,"e":"هذا هو تعريف الاتصال الرسمي."},
+  {"ch":1,"t":"mc","q":"الاتصال غير الرسمي يوصف بأنه:","o":["عفوي وبدون قيود رسمية","ملزم بلوائح ثابتة","مكتوب فقط","إلكتروني فقط"],"c":0,"e":"الاتصال غير الرسمي عفوي وبدون قيود رسمية."},
+  {"ch":1,"t":"tf","q":"الاتصال الأفقي يكون بين أفراد في نفس المستوى الوظيفي.","o":["صح","خطأ"],"c":0,"e":"الاتصال الأفقي يكون بين أفراد في نفس المستوى الوظيفي."},
+  {"ch":1,"t":"mc","q":"الاتصال في اتجاه واحد يعني:","o":["وجود تفاعل وتبادل ردود","عدم وجود تفاعل أو ردود","اتصال بين رئيس ومرؤوس فقط","اتصال بين قسمين مختلفين"],"c":1,"e":"الاتصال في اتجاه واحد لا يوجد فيه تفاعل أو ردود."},
+  {"ch":1,"t":"tf","q":"الاتصال في اتجاهين يتميز بوجود تفاعل وتبادل ردود.","o":["صح","خطأ"],"c":0,"e":"الاتصال في اتجاهين يتضمن تفاعل وتبادل ردود."},
+  {"ch":1,"t":"mc","q":"من وسائل الاتصال المباشرة:","o":["المقابلات والاجتماعات والندوات","الفاكس فقط","البريد الإلكتروني فقط","شبكات الحاسب فقط"],"c":0,"e":"المقابلات والاجتماعات والندوات وسائل اتصال مباشرة."},
+  {"ch":1,"t":"tf","q":"من عيوب الاتصال الهاتفي احتمال إساءة فهم الرسالة وعدم تسجيل المحادثة.","o":["صح","خطأ"],"c":0,"e":"هذان العيبان ضمن عيوب الاتصال الهاتفي."},
+  {"ch":1,"t":"mc","q":"من مميزات الاجتماعات أنها:","o":["تمنع عرض أكثر من فكرة","لا تسمح بوسائل توضيح","تتيح عرض أفكار متعددة في وقت واحد","لا تحتاج وقتًا"],"c":2,"e":"الاجتماعات وسيلة لعرض أفكار متعددة في وقت واحد."},
+  {"ch":1,"t":"tf","q":"قد تتحول الاجتماعات إلى اتصال من طرف واحد، وهذا من عيوبها.","o":["صح","خطأ"],"c":0,"e":"تحول الاجتماعات إلى اتصال من طرف واحد من عيوبها."},
+  {"ch":1,"t":"mc","q":"من الاعتبارات المؤثرة في اختيار وسيلة الاتصال المناسبة:","o":["أهمية الرسالة","السرية المطلوبة","عدد الأشخاص","جميع ما سبق"],"c":3,"e":"كل هذه الاعتبارات ضمن اختيار الوسيلة المناسبة."},
+  {"ch":1,"t":"tf","q":"السرعة المطلوبة في الاتصال من العوامل المؤثرة في اختيار الوسيلة.","o":["صح","خطأ"],"c":0,"e":"السرعة المطلوبة من اعتبارات اختيار الوسيلة."},
+  {"ch":1,"t":"mc","q":"يعتمد كفيف البصر في الاتصال على:","o":["لغة الشفاه فقط","لغة الإشارة فقط","لغة الكلام واللمس في قراءة برايل","الروائح فقط"],"c":2,"e":"كفيف البصر يعتمد على الاتصال اللفظي وحاسة اللمس في برايل."},
+  {"ch":1,"t":"tf","q":"يعتمد الأصم الأبكم على الاتصال غير اللفظي مثل لغة الإشارة والشفاه والأصابع.","o":["صح","خطأ"],"c":0,"e":"هذه اللغات ضمن وسائل الاتصال لدى الأصم الأبكم."},
+  {"ch":1,"t":"mc","q":"لغة الأصابع تقوم على:","o":["الحروف الهجائية بإشارات يدوية مرئية","قراءة الشفاه فقط","استخدام الروائح","الكتابة على الحاسوب فقط"],"c":0,"e":"لغة الأصابع إشارات حسية مرئية يدوية للحروف الهجائية."},
+  {"ch":1,"t":"tf","q":"من مشكلات العلاقة المهنية مع المعاق سمعيًا عدم فهم الأخصائي للغة التي يعبر بها.","o":["صح","خطأ"],"c":0,"e":"عدم فهم لغة المعاق سمعيًا من أهم المشكلات."},
+  {"ch":1,"t":"mc","q":"طُوّرت بعض برامج الحاسب لمساعدة المعاقين على:","o":["تعطيل الاتصال","استخدامه في الدراسة وتسهيل عملية الاتصال","تقليل التفاعل","إلغاء اللغة المكتوبة"],"c":1,"e":"برامج الحاسب ساعدت المعاقين في الدراسة وتسهيل الاتصال."},
+  {"ch":1,"t":"tf","q":"يقتصر الاتصال على مجرد نقل الرسائل ولا يشمل الاستجابة والتغذية الراجعة.","o":["صح","خطأ"],"c":1,"e":"الاتصال لا يقتصر على نقل الرسائل بل يشمل الاستجابة والتغذية الراجعة."},
+  {"ch":2,"t":"mc","q":"الاتصال الفعال هو عملية تبادل الأفكار من خلال:","o":["استبعاد أساليب الاتصال","استثمار إمكانيات الإرسال والاستقبال وتوظيف الأساليب المناسبة","الاعتماد على وسيلة واحدة فقط","إلغاء فهم مشاعر الآخرين"],"c":1,"e":"الاتصال الفعال يتم باستثمار إمكانيات الإرسال والاستقبال وتوظيف الأساليب المناسبة."},
+  {"ch":2,"t":"tf","q":"الاتصال الفعال يتجاوز مجرد تبادل المعلومات ليشمل فهم مشاعر الآخرين.","o":["صح","خطأ"],"c":0,"e":"هذا المعنى صراحة في تعريف الاتصال الفعال."},
+  {"ch":2,"t":"mc","q":"من خصائص الاتصال الفعال:","o":["الوضوح","الدقة","الاختصار والإيجاز","جميع ما سبق"],"c":3,"e":"الوضوح والاختصار والدقة ضمن خصائص الاتصال الفعال."},
+  {"ch":2,"t":"tf","q":"الوضوح في الاتصال الفعال يعني استخدام جمل بسيطة وقصيرة.","o":["صح","خطأ"],"c":0,"e":"الوضوح يتحقق بجمل بسيطة وقصيرة وواضحة."},
+  {"ch":2,"t":"mc","q":"المقصود بالاختصار والإيجاز هو:","o":["حذف المعنى الأساسي","نقل المعلومات بأسلوب واضح وسريع وموجز غير مطول","استخدام ألفاظ معقدة","تكرار الرسالة أكثر من مرة"],"c":1,"e":"الاختصار لنقل المعلومات بسرعة ووضوح دون إطالة."},
+  {"ch":2,"t":"tf","q":"من خصائص الاتصال الفعال أن تكون المعلومات دقيقة وصحيحة تمامًا.","o":["صح","خطأ"],"c":0,"e":"الدقة من خصائص الاتصال الفعال."},
+  {"ch":2,"t":"mc","q":"تسلسل المعلومات يعني:","o":["عرض الأفكار دون تنظيم","وضع كل فكرة بعد فترة طويلة","تنظيم المعلومات بشكل متسلسل ومنظم","إهمال التخطيط المسبق"],"c":2,"e":"تسلسل المعلومات يتطلب تنظيمها مسبقًا بصورة متسلسلة."},
+  {"ch":2,"t":"tf","q":"استخدام الكلمات المسيئة قد ينفّر المتلقين حتى لو كان محتوى الرسالة مهمًا.","o":["صح","خطأ"],"c":0,"e":"ضمن خاصية الأدب والاحترام في الاتصال الفعال."},
+  {"ch":2,"t":"mc","q":"المستمع الجيد يجب أن يكون:","o":["سريع الحكم ومتأثرًا بعواطفه","دقيق الملاحظة وموضوعيًا","منشغلًا برسائل جانبية","غير مهتم بالإشارات غير اللفظية"],"c":1,"e":"المستمع الجيد ذكي ودقيق الملاحظة وموضوعي."},
+  {"ch":2,"t":"tf","q":"التركيز والانتباه من أهم خصائص التواصل الفعال لدى الناقل والمتلقي معًا.","o":["صح","خطأ"],"c":0,"e":"التركيز والانتباه ضروريان لتجنب فقدان المعلومات المهمة."},
+  {"ch":2,"t":"mc","q":"يُعرَّف الإنصات بأنه:","o":["سماع الأصوات دون فهم","إعمال العقل بكامل طاقته فيما تستقبله الحواس","مقاطعة المرسل للتصحيح","إعادة الرسالة دون تحليل"],"c":1,"e":"الإنصات هو إعمال العقل بكامل طاقته فيما تستقبله الحواس."},
+  {"ch":2,"t":"tf","q":"من مراحل الإنصات: الانتباه والتركيز ثم الاستماع ثم محاولة فهم المرسل.","o":["صح","خطأ"],"c":0,"e":"هذه المراحل ضمن مراحل الإنصات."},
+  {"ch":2,"t":"mc","q":"من شروط الإنصات الجيد:","o":["الاستعداد","الاستماع الواعي","الاستفسار عند عدم الفهم","جميع ما سبق"],"c":3,"e":"هذه العناصر ضمن شروط الإنصات الجيد."},
+  {"ch":2,"t":"tf","q":"تشجيع المرسل على الاستمرار يعد من شروط الإنصات الجيد.","o":["صح","خطأ"],"c":0,"e":"تشجيع المرسل من شروط الإنصات الجيد."},
+  {"ch":2,"t":"mc","q":"من صفات اللباقة في الحديث:","o":["احترام الناس","خفض الصوت","الاختصار في الكلام","جميع ما سبق"],"c":3,"e":"هذه الصفات ضمن شروط الحديث الناجح."},
+  {"ch":2,"t":"tf","q":"البساطة في الحديث من الصفات المطلوبة في مهارة الحديث.","o":["صح","خطأ"],"c":0,"e":"البساطة ضمن صفات اللباقة في مخاطبة الناس."},
+  {"ch":2,"t":"mc","q":"من أسباب الاختلاف بين الناس في الحوار:","o":["عدم وضوح الرؤية للموضوع","التعصب للرأي","الفروق الفردية","جميع ما سبق"],"c":3,"e":"هذه الأسباب ضمن أسباب الاختلاف في الحوار."},
+  {"ch":2,"t":"tf","q":"التنافس على موارد مشتركة من أسباب الاختلاف بين الناس في الحوار.","o":["صح","خطأ"],"c":0,"e":"التنافس على موارد مشتركة ضمن أسباب الاختلاف."},
+  {"ch":2,"t":"mc","q":"الإقناع هو وسيلة لتحقيق هدف قد يكون:","o":["تغيير معلومة أو اتجاه أو سلوك لدى طرف آخر","إنهاء الحديث دون نتيجة","إخفاء الحقائق","فرض السيطرة فقط"],"c":0,"e":"الإقناع وسيلة لتغيير معلومة أو اتجاه أو سلوك."},
+  {"ch":2,"t":"tf","q":"الغرض الرئيسي للملاحظة هو تدوين ما يُرى من سلوك وتصرفات وحركات ومشاعر.","o":["صح","خطأ"],"c":0,"e":"ذلك نصًا في تعريف مهارة الملاحظة."},
+  {"ch":2,"t":"mc","q":"يتحقق الانتباه في الملاحظة من خلال:","o":["اليقظة","اختيار المثير","التركيز والحذر","جميع ما سبق"],"c":3,"e":"هذه العناصر جميعها تحقق الانتباه في الملاحظة."},
+  {"ch":2,"t":"tf","q":"القراءة من مهارات الاتصال التي ينبغي اكتسابها لكل أنواع الاتصالات المكتوبة.","o":["صح","خطأ"],"c":0,"e":"ضرورة اكتساب مهارة القراءة لكل أنواع الاتصالات المكتوبة."},
+  {"ch":2,"t":"mc","q":"من أسباب استخدام الإنسان للكتابة:","o":["توثيق ما اتفق عليه","تعزيز الاتصالات الشفهية السابقة","التواصل عند تعذر التخاطب","جميع ما سبق"],"c":3,"e":"هذه الأسباب ضمن دواعي استخدام الكتابة."},
+  {"ch":2,"t":"tf","q":"من إرشادات الكتابة السليمة تحديد الهدف من عملية الكتابة.","o":["صح","خطأ"],"c":0,"e":"تحديد الهدف ضمن إرشادات الكتابة السليمة."},
+  {"ch":2,"t":"mc","q":"من إرشادات الكتابة السليمة:","o":["استخدام الجمل القصيرة والبسيطة","تجنب التكرار","الموضوعية","جميع ما سبق"],"c":3,"e":"هذه ضمن الإرشادات العامة للكتابة السليمة."},
+  {"ch":2,"t":"tf","q":"تقسم الرسالة أو الخطاب أو التقرير عند الكتابة إلى مقدمة ومحتوى وخاتمة.","o":["صح","خطأ"],"c":0,"e":"ضرورة تقسيم الكتابة إلى مقدمة ومحتوى وخاتمة."},
+  {"ch":2,"t":"mc","q":"من أشكال الكتابة المذكورة:","o":["الخطابات","المذكرات","محاضر الاجتماعات","جميع ما سبق"],"c":3,"e":"هذه ضمن أشكال الكتابة."},
+  {"ch":2,"t":"tf","q":"عاطفية عرض الآراء والأفكار من معوقات الاتصال المكتوب.","o":["صح","خطأ"],"c":0,"e":"العاطفية في عرض الآراء من معوقات الاتصال المكتوب."},
+  {"ch":2,"t":"mc","q":"من معوقات الاتصال المكتوب:","o":["المبالغة في عرض وجهات النظر","عدم السلامة اللغوية","عرض الآراء غير الموثقة","جميع ما سبق"],"c":3,"e":"هذه النقاط ضمن معوقات الاتصال المكتوب."},
+  {"ch":2,"t":"tf","q":"قصور المرسل وعدم قدرته على صياغة الرسالة بوضوح من معوقات الاتصال المتعلقة بالمرسل.","o":["صح","خطأ"],"c":0,"e":"ضمن معوقات الاتصال المتعلقة بالمرسل."},
+  {"ch":2,"t":"mc","q":"من معوقات الاتصال المتعلقة بالرسالة:","o":["التشويش الناتج عن أخطاء تقلل وضوح الموضوع","الثقة المتبادلة","اختيار وقت مناسب","التغذية العكسية السليمة"],"c":0,"e":"الرسالة قد تتضمن أخطاء تسبب التشويش."},
+  {"ch":2,"t":"tf","q":"ارتفاع درجة الحرارة أو شدة البرودة قد يعوقان الاتصال الجيد.","o":["صح","خطأ"],"c":0,"e":"المؤثرات الخارجية كالحرارة والبرودة ضمن المعوقات."},
+  {"ch":2,"t":"mc","q":"من معوقات الاتصال المتعلقة بالمستقبل:","o":["سوء التقاط الرسائل","عدم الانتباه للحديث ككل","إصدار أحكام مسبقة تجاه المرسل","جميع ما سبق"],"c":3,"e":"هذه الثلاثة ضمن معوقات المستقبل."},
+  {"ch":2,"t":"tf","q":"الاختيار الخاطئ للوسيلة قد يؤدي إلى فشل عملية الاتصال برمتها.","o":["صح","خطأ"],"c":0,"e":"ضمن المعوقات المتعلقة بالوسيلة."},
+  {"ch":2,"t":"mc","q":"ازدحام واختناق قنوات الاتصال يُصنَّف ضمن معوقات:","o":["المرسل","الرسالة","الوسيلة","المستقبل"],"c":2,"e":"ازدحام القنوات ضمن المعوقات المتعلقة بالوسيلة."},
+  {"ch":2,"t":"tf","q":"افتراض المرسل أن التغذية العكسية غير ضرورية من معوقات الاتصال.","o":["صح","خطأ"],"c":0,"e":"ضمن معوقات الاتصال المتعلقة بالتغذية العكسية."},
+  {"ch":2,"t":"mc","q":"من طرق التغلب على معوقات الاتصال:","o":["اختيار الوقت والمكان الملائمين","استخدام لغة واضحة","اختيار موضوع واحد في كل مرة","جميع ما سبق"],"c":3,"e":"هذه الأساليب ضمن طرق التغلب على المعوقات."},
+  {"ch":2,"t":"tf","q":"من الأفضل اختيار مكان خالٍ من الضوضاء المشتتة عند التواصل.","o":["صح","خطأ"],"c":0,"e":"ضمن وسائل التغلب على معوقات الاتصال."},
+  {"ch":2,"t":"mc","q":"من مواقف الاتصال غير الفعال:","o":["السيطرة على الحديث","المقاطعة المستمرة","التهكم والسخرية","جميع ما سبق"],"c":3,"e":"هذه ضمن مواقف الاتصال غير الفعال."},
+  {"ch":2,"t":"tf","q":"الفروق الثقافية بين المرسل والمستقبل قد تؤدي إلى اتصال غير فعال.","o":["صح","خطأ"],"c":0,"e":"الفروق الثقافية ضمن مواقف الاتصال غير الفعال."},
+  {"ch":3,"t":"mc","q":"من أهمية الاتصال في إدارة المؤسسات:","o":["نقل المعلومات والبيانات","المساهمة في اتخاذ القرارات الإدارية","تحقيق نجاح المؤسسة ونموها","جميع ما سبق"],"c":3,"e":"هذه الوظائف ضمن أهمية الاتصال في إدارة المؤسسات."},
+  {"ch":3,"t":"tf","q":"الاتصالات تساعد الإدارة على الوقوف على نقاط الضعف الخاصة بأداء الأفراد وعلاجها.","o":["صح","خطأ"],"c":0,"e":"ضمن أهمية الاتصال في إدارة المؤسسات."},
+  {"ch":3,"t":"mc","q":"وصف المنهج الاتصالات بالنسبة للإدارة بأنها:","o":["عبء يمكن الاستغناء عنه","المفتاح المؤدي للإدارة","وسيلة ثانوية","أداة تصلح للإعلام فقط"],"c":1,"e":"الاتصالات هي المفتاح المؤدي للإدارة."},
+  {"ch":3,"t":"tf","q":"غياب الاتصال الفعال داخل المنظمة قد يؤدي إلى تبديد الموارد وتعطيل الإنتاجية.","o":["صح","خطأ"],"c":0,"e":"بوضوح في الفصل الثالث."},
+  {"ch":3,"t":"mc","q":"يستخدم الإنسان في الاتصال بالحواس صورًا مثل:","o":["الاتصال البصري","الاتصال باللمس","الاتصال باليد","جميع ما سبق"],"c":3,"e":"هذه الصور ضمن الاتصال والحواس."},
+  {"ch":3,"t":"tf","q":"الاتصال الحسي أو الإحساسي باستخدام الحواس يعد جزءًا من لغة الجسم.","o":["صح","خطأ"],"c":0,"e":"نص المنهج صراحة على هذا المعنى."},
+  {"ch":3,"t":"mc","q":"الإدراك الحسي هو:","o":["تخزين المعلومات فقط","ترجمة الإحساس إلى شيء له معنى","إلغاء تأثير الخبرات السابقة","تجاهل المنبهات الخارجية"],"c":1,"e":"الإدراك الحسي ترجمة الإحساس إلى شيء له معنى."},
+  {"ch":3,"t":"tf","q":"تختلف الاستجابة الإدراكية للموقف الواحد باختلاف ظروف الأشخاص وخبراتهم السابقة.","o":["صح","خطأ"],"c":0,"e":"الإدراك يتأثر بالحواس والحالة الشعورية والخبرات السابقة."},
+  {"ch":3,"t":"mc","q":"سبب الفجوة في التعامل والاتصال بين المرسل والمستقبل هو:","o":["التطابق الكامل في إدراك الحديث","اختلاف إدراك الحديث المتبادل","غياب الرسالة فقط","استخدام وسيلة مباشرة"],"c":1,"e":"الفجوة سببها الاختلاف في إدراك الحديث المتبادل."},
+  {"ch":3,"t":"tf","q":"من القواعد المفيدة في الاتصال احترام الاختلاف والرأي الآخر.","o":["صح","خطأ"],"c":0,"e":"ضرورة احترام الاختلاف والالتزام بالموضوعية."},
+  {"ch":3,"t":"mc","q":"من تعريفات الاتصال في بيئة العمل أنه:","o":["ربط العاملين والإدارات ببعض وربط المنشأة بعملائها","منع انتقال البيانات","عزل العاملين عن الإدارة","حذف المشاعر من التعاملات"],"c":0,"e":"هذا التعريف ضمن تعريفات الاتصال في بيئة العمل."},
+  {"ch":3,"t":"tf","q":"الاتصال في بيئة العمل هو عملية نقل واستقبال المعلومات لتحقيق أهداف المنظمة.","o":["صح","خطأ"],"c":0,"e":"أحد التعريفات المباشرة الواردة."},
+  {"ch":3,"t":"mc","q":"من أهداف الاتصال في بيئة العمل:","o":["إعلام المرؤوسين بالأهداف والسياسات والخطط","تعطيل التعليمات التنفيذية","إخفاء المشكلات عن الرؤساء","منع تبادل المعلومات"],"c":0,"e":"هذا الهدف ضمن أهداف الاتصال في بيئة العمل."},
+  {"ch":3,"t":"tf","q":"من أهداف الاتصال في بيئة العمل إعلام الرؤساء بما تم وبالمشكلات والاقتراحات.","o":["صح","خطأ"],"c":0,"e":"هذا الهدف ضمن أهداف الاتصال."},
+  {"ch":3,"t":"mc","q":"من أهمية الاتصال في بيئة العمل:","o":["تحفيز العاملين","توجيه العاملين ونصحهم","حل مشكلات العمل","جميع ما سبق"],"c":3,"e":"هذه الوظائف ضمن أهمية الاتصال في بيئة العمل."},
+  {"ch":3,"t":"tf","q":"استقبال الجمهور والعملاء من صور أهمية الاتصال في بيئة العمل.","o":["صح","خطأ"],"c":0,"e":"استقبال الجمهور ضمن أهمية الاتصال."},
+  {"ch":3,"t":"mc","q":"إذا كان الاتصال ضعيفًا أو غير مناسب كان القرار:","o":["قويًا دائمًا","أكثر دقة بالضرورة","ضعيفًا وغير مناسب","بلا علاقة له بالاتصال"],"c":2,"e":"القرار يُبنى على المعلومات، والاتصال الضعيف يؤدي لقرار ضعيف."},
+  {"ch":3,"t":"tf","q":"تقدير نسبة الوقت المخصص للاتصال يصل إلى 75%–90% تقريبًا.","o":["صح","خطأ"],"c":0,"e":"نسبة الوقت المخصص للاتصال تتراوح بين 75% و90%."},
+  {"ch":3,"t":"mc","q":"النسبة الأكبر من وقت الاتصال تُنفق في:","o":["الكتابة","القراءة","التحدث","الإنصات أو الاستماع"],"c":3,"e":"50% من وقت الاتصال يذهب للإنصات أو الاستماع."},
+  {"ch":3,"t":"tf","q":"المدير الناجح هو الذي يجيد مهارة الاتصال بأنواعه المتعددة.","o":["صح","خطأ"],"c":0,"e":"بصيغة مباشرة في المنهج."},
+  {"ch":3,"t":"mc","q":"نجاح المنظمات يعتمد أيضًا على:","o":["قدرة العاملين على بناء علاقات عمل قوية وفعالة","تقليل التعاون","إلغاء التفاعل الإنساني","تجنب إدارة العلاقات"],"c":0,"e":"نجاح المنظمات يعتمد على بناء علاقات عمل قوية."},
+  {"ch":3,"t":"tf","q":"من الإرشادات للعمل بصورة أفضل: افعل شيئًا واحدًا في الوقت الواحد.","o":["صح","خطأ"],"c":0,"e":"ضمن قائمة كيف تعمل بصورة أفضل."},
+  {"ch":3,"t":"mc","q":"من عناصر العمل بصورة أفضل:","o":["تعلم فن الإنصات","تعلم كيف تسأل الأسئلة","اعترف بالأخطاء","جميع ما سبق"],"c":3,"e":"تضمنت القائمة هذه العناصر كلها."},
+  {"ch":3,"t":"tf","q":"قبول التغيير لأنه لا مفر منه من الإرشادات للعمل بصورة أفضل.","o":["صح","خطأ"],"c":0,"e":"تقبل التغيير لأنه سنة لا مفر منها."},
+  {"ch":3,"t":"mc","q":"مفتاح العلاقات الإنسانية مع المرؤوسين يتطلب:","o":["الإنصات لهم","فهم مشاعرهم","تقدير إنجازاتهم","جميع ما سبق"],"c":3,"e":"هذه ضمن مفتاحك للعلاقات الإنسانية مع المرؤوسين."},
+  {"ch":3,"t":"tf","q":"لا يمكن النجاح في التعامل مع كل الناس بأسلوب واحد.","o":["صح","خطأ"],"c":0,"e":"التعامل الناجح يتطلب فهم الشخصية المناسبة."},
+  {"ch":3,"t":"mc","q":"العلاقات الودية الدافئة في العمل ضرورية لأنها:","o":["تخلق مناخًا للتعاون والمشاركة","تزيد الصراعات عمدًا","تلغي الحاجة للدعم","تمنع التقدم الإداري"],"c":0,"e":"العلاقات الودية ضرورية للتعاون والمشاركة."},
+  {"ch":3,"t":"tf","q":"الصراعات بين الزملاء تضيف ضغوطًا جديدة إلى الضغوط الموجودة في أماكن العمل.","o":["صح","خطأ"],"c":0,"e":"ضمن فقرة العلاقات الودية الدافئة."},
+  {"ch":3,"t":"mc","q":"من الوصايا العشر للعلاقات الإنسانية الفعالة:","o":["اذكر أسماء الناس عند التحدث إليهم","اهتم بالناس بصدق","تعلم أن تثق في قدرات الناس","جميع ما سبق"],"c":3,"e":"تضمنت الوصايا العشر هذه البنود جميعًا."},
+  {"ch":3,"t":"tf","q":"الثقة تبني علاقات تدوم للأبد.","o":["صح","خطأ"],"c":0,"e":"ضمن الوصايا العشر للعلاقات الإنسانية الفعالة."},
+  {"ch":3,"t":"mc","q":"من طرق تحسين العلاقات والسلوك في بيئة العمل:","o":["تطبيق الإدارة بالمشاركة","الاهتمام بالدورات التدريبية","بناء وتدعيم الولاء المؤسسي","جميع ما سبق"],"c":3,"e":"هذه ضمن طرق تحسين العلاقات والسلوك."},
+  {"ch":3,"t":"tf","q":"بناء وتدعيم ولاء العملاء للمنظمة من أساليب تحسين العلاقات في بيئة العمل.","o":["صح","خطأ"],"c":0,"e":"ضمن قائمة تحسين العلاقات والسلوك."},
+  {"ch":3,"t":"mc","q":"من أهداف الاتصال في بيئة العمل صياغة الأفكار بحيث:","o":["لا يفهمها الطرف الآخر","يتفهمها الطرف الآخر ويتصرف بالشكل المطلوب","تبقى سرية دون هدف","تستخدم فقط في الاتجاه الصاعد"],"c":1,"e":"الهدف أن يتفهمها الطرف الآخر ويتصرف بالشكل المطلوب."},
+  {"ch":3,"t":"tf","q":"حاجة العاملين للمشاركة الفعالة في العمل من أوجه أهمية الاتصال.","o":["صح","خطأ"],"c":0,"e":"ضمن أهمية الاتصال في بيئة العمل."},
+  {"ch":3,"t":"mc","q":"من صور استخدام الاتصال في بيئة العمل:","o":["تقديم السلع أو الخدمات للعملاء","استقبال الجمهور","إنجاز الأعمال اليومية","جميع ما سبق"],"c":3,"e":"وردت هذه الصور ضمن أهمية الاتصال."},
+  {"ch":3,"t":"tf","q":"المنظمة تتكون من وحدات تنظيمية مختلفة تربط بينها خطوط اتصال في اتجاهين.","o":["صح","خطأ"],"c":0,"e":"خطوط الاتصال تكون في اتجاهين."},
+  {"ch":3,"t":"mc","q":"من آثار الاتصال داخل المؤسسة أنه يمكّن الرئيس من:","o":["الاطلاع على نشاط مرؤوسيه","معرفة مدى تقبلهم لآرائه","متابعة الأعمال داخل المنظمة","جميع ما سبق"],"c":3,"e":"هذه الوظائف للاتصال داخل المؤسسة."},
+  {"ch":3,"t":"tf","q":"سلامة الحواس وحدها تكفي دائمًا لصحة المدركات التي تصل إلى المخ.","o":["صح","خطأ"],"c":1,"e":"العوامل النفسية والاجتماعية قد تحرف المدركات."},
+  {"ch":3,"t":"mc","q":"الإدراك هو عملية عقلية يستخدم فيها الفرد:","o":["خبراته السابقة وحاجاته الحالية وطموحاته","حاسة واحدة فقط","الكلمات المكتوبة وحدها","مشاعره دون تفسير"],"c":0,"e":"الإدراك يستخدم خبرات سابقة وحاجات وطموحات."},
+  {"ch":3,"t":"tf","q":"الموضوع الواحد يتم إدراكه بطريقة واحدة متطابقة لدى جميع الناس.","o":["صح","خطأ"],"c":1,"e":"الموضوع يُدرك بطرق مختلفة تبعًا لظروف كل شخص."},
+  {"ch":4,"t":"mc","q":"من تعريفات التفاوض أنه:","o":["عملية مباحثات بين طرفين أو أكثر لبلوغ حد الاتفاق","فرض الرأي بالقوة دون حوار","وسيلة لإخفاء المصالح","أسلوب للمواجهة البدنية"],"c":0,"e":"هذا التعريف ضمن ماهية التفاوض."},
+  {"ch":4,"t":"tf","q":"التفاوض أسلوب اتصال عقلي بين طرفين يستخدمان فيه مهارات الاتصال اللفظي لتبادل الحوار الإقناعي.","o":["صح","خطأ"],"c":0,"e":"أحد التعريفات الواردة للتفاوض."},
+  {"ch":4,"t":"mc","q":"من خصائص التفاوض أنه عملية:","o":["ديناميكية بالغة الدقة والحساسية","ثابتة لا تتغير","خالية من المشكلات","لا تحتاج مهارة"],"c":0,"e":"التفاوض عملية ديناميكية بالغة الدقة والحساسية."},
+  {"ch":4,"t":"tf","q":"نجاح التفاوض مرهون بمهارة المفاوض.","o":["صح","خطأ"],"c":0,"e":"النجاح في التفاوض مرهون بمهارة المفاوض."},
+  {"ch":4,"t":"mc","q":"تنشأ أهمية علم التفاوض من زاويتين أساسيتين هما:","o":["ضرورته وحتميته","التكلفة والسرعة","الشكل والمضمون","النص والصورة"],"c":0,"e":"أهمية التفاوض من زاويتين: الضرورة والحتمية."},
+  {"ch":4,"t":"tf","q":"حتمية التفاوض تعني أنه المخرج أو المنفذ الوحيد الممكن لمعالجة القضية أحيانًا.","o":["صح","خطأ"],"c":0,"e":"التفاوض قد يكون المنفذ الوحيد للوصول إلى حل."},
+  {"ch":4,"t":"mc","q":"الفرق بين التفاوض والمساومة أن التفاوض:","o":["يحقق مكسب طرف وخسارة الآخر","يقوم على احترام متبادل ومكاسب مشتركة","أقل قيمة من المساومة","لا يرتبط بالمصالح"],"c":1,"e":"التفاوض يقوم على احترام متبادل ويسعى لمكاسب مشتركة."},
+  {"ch":4,"t":"tf","q":"المساومة عملية نفعية بحتة يسعى فيها كل طرف لتحقيق مكاسب على حساب خسارة الطرف الآخر.","o":["صح","خطأ"],"c":0,"e":"هذا وصف المنهج للمساومة."},
+  {"ch":4,"t":"mc","q":"شراء سيارة أو جهاز ومحاولة الحصول على أرخص سعر يعد:","o":["تفاوضًا متكاملًا","مساومة","تعاونًا استراتيجيًا","إدارة بالمشاركة"],"c":1,"e":"هذا أدق لمصطلح المساومة لا التفاوض."},
+  {"ch":4,"t":"tf","q":"العلاقة بين طرفي المساومة هي علاقة ربح طرف على حساب خسارة الطرف الثاني.","o":["صح","خطأ"],"c":0,"e":"تقريبًا بحرفيته في المقارنة بين التفاوض والمساومة."},
+  {"ch":4,"t":"mc","q":"من عناصر الموقف التفاوضي:","o":["الترابط","التركيب","الغموض","جميع ما سبق"],"c":3,"e":"هذه العناصر ضمن عناصر الموقف التفاوضي."},
+  {"ch":4,"t":"tf","q":"الموقف التفاوضي موقف مرن يتطلب قدرات هائلة للتكيف السريع والمستمر.","o":["صح","خطأ"],"c":0,"e":"ضمن عناصر التفاوض الرئيسية."},
+  {"ch":4,"t":"mc","q":"الترابط في الموقف التفاوضي يعني:","o":["غياب العلاقة بين عناصر القضية","أن يصبح للموقف كل عام مترابط يسهل الوصول إلى جزئياته","التركيز على عنصر واحد فقط","تجزئة القضية دون صلة بينها"],"c":1,"e":"هذا تفسير المنهج لمعنى الترابط."},
+  {"ch":4,"t":"tf","q":"التركيب يعني أن الموقف التفاوضي يتكون من جزيئات وعناصر يمكن تناولها جزئيًا وكليًا.","o":["صح","خطأ"],"c":0,"e":"هذا شرح عنصر التركيب."},
+  {"ch":4,"t":"mc","q":"إمكانية التعرف والتمييز في الموقف التفاوضي تعني:","o":["وجود غموض ولبس شديدين","إمكانية التعرف على الموقف وتمييزه دون غموض أو لبس","تأجيل فهم القضية","تغيير عناصرها باستمرار"],"c":1,"e":"إمكانية التعرف على الموقف وتمييزه دون غموض."},
+  {"ch":4,"t":"tf","q":"الاتساع المكاني والزماني يقصد به المرحلة التاريخية والمكان الجغرافي الذي تشمله القضية.","o":["صح","خطأ"],"c":0,"e":"هذا التعريف حرفيًا تقريبًا."},
+  {"ch":4,"t":"mc","q":"الغموض في الموقف التفاوضي يدفع المفاوض إلى:","o":["تجاهل المعلومات","جمع كافة المعلومات والبيانات لتقليل عدم التأكد","رفض التفاوض مباشرة","ترك القضية معلقة دون دراسة"],"c":1,"e":"الغموض يدفع لجمع المعلومات لتقليل عدم التأكد."},
+  {"ch":4,"t":"tf","q":"أطراف التفاوض قد تشمل أطرافًا مباشرة وأخرى غير مباشرة.","o":["صح","خطأ"],"c":0,"e":"أطراف التفاوض تنقسم إلى مباشرة وغير مباشرة."},
+  {"ch":4,"t":"mc","q":"الأطراف غير المباشرة في التفاوض هي:","o":["التي تجلس فعليًا إلى مائدة المفاوضات","القوى الضاغطة المرتبطة بالمصلحة أو ذات الصلة بالتفاوض","من يوقعون الاتفاق النهائي فقط","الوسطاء وحدهم دائمًا"],"c":1,"e":"الأطراف غير المباشرة هي القوى الضاغطة ذات الصلة."},
+  {"ch":4,"t":"tf","q":"لا بد أن يدور التفاوض حول قضية أو موضوع معين يمثل محور العملية التفاوضية.","o":["صح","خطأ"],"c":0,"e":"القضية التفاوضية تمثل محور العملية."},
+  {"ch":4,"t":"mc","q":"من خلال القضية المتفاوض بشأنها يتحدد:","o":["الهدف التفاوضي","غرض كل مرحلة","التكتيكات والاستراتيجيات المستخدمة","جميع ما سبق"],"c":3,"e":"كل هذه الأمور تتحدد من خلال القضية التفاوضية."},
+  {"ch":4,"t":"tf","q":"الهدف التفاوضي العام أو النهائي يمكن تقسيمه إلى أهداف مرحلية وجزئية.","o":["صح","خطأ"],"c":0,"e":"ضمن شرح الهدف التفاوضي."},
+  {"ch":4,"t":"mc","q":"من صور الهدف التفاوضي:","o":["القيام بعمل محدد","الامتناع عن عمل معين","تحقيق مزيج من الهدفين السابقين","جميع ما سبق"],"c":3,"e":"هذه الصور الثلاث للهدف التفاوضي."},
+  {"ch":4,"t":"tf","q":"القوة التفاوضية ترتبط بحدود السلطة والتفويض الممنوح للفرد المفاوض.","o":["صح","خطأ"],"c":0,"e":"هذا تعريف القوة التفاوضية."},
+  {"ch":4,"t":"mc","q":"من أسئلة المعلومات التفاوضية الأساسية:","o":["من نحن؟","من خصمنا؟","ماذا نريد؟","جميع ما سبق"],"c":3,"e":"هذه الأسئلة ضمن شرط المعلومات التفاوضية."},
+  {"ch":4,"t":"tf","q":"المعلومات التفاوضية تساعد على وضع برنامج تفاوض محدد المهام والأهداف.","o":["صح","خطأ"],"c":0,"e":"بناءً على المعلومات يتم وضع برنامج التفاوض."},
+  {"ch":4,"t":"mc","q":"القدرة التفاوضية ترتبط أساسًا بـ:","o":["أعضاء الفريق ومهاراتهم وكفاءتهم","نوع الأوراق المستخدمة","حجم قاعة التفاوض","لون الوثائق الرسمية"],"c":0,"e":"القدرة التفاوضية تتصل بأعضاء الفريق وبراعتهم."},
+  {"ch":4,"t":"tf","q":"من متطلبات القدرة التفاوضية الاختيار الجيد لأعضاء الفريق وتحقيق الانسجام بينهم.","o":["صح","خطأ"],"c":0,"e":"ضمن وسائل دعم القدرة التفاوضية."},
+  {"ch":4,"t":"mc","q":"الرغبة المشتركة في التفاوض تعني:","o":["اقتناع الأطراف بأن التفاوض وسيلة مناسبة أو أفضل لحل النزاع","إجبار طرف واحد فقط على الجلوس","الرغبة في كسب الوقت فقط","إخفاء النوايا الحقيقية دائمًا"],"c":0,"e":"اقتناع الأطراف بأن التفاوض أفضل وسيلة لحل النزاع."},
+  {"ch":4,"t":"tf","q":"توازن المصالح والقوى بين أطراف التفاوض يساعد على نتائج أكثر استقرارًا وعدالة.","o":["صح","خطأ"],"c":0,"e":"أكّد المنهج ذلك عند شرح المناخ المحيط بالقضية."},
+  {"ch":4,"t":"mc","q":"الخطوة الأولى في التفاوض العملي هي:","o":["بدء الجلسات الفعلية","تحديد وتشخيص القضية التفاوضية","توقيع الاتفاق النهائي","اختيار مكان الجلسة فقط"],"c":1,"e":"الخطوة الأولى تحديد وتشخيص القضية التفاوضية."},
+  {"ch":4,"t":"tf","q":"من أهداف المفاوضات التمهيدية تحديد نقاط الالتقاء ونقاط الاختلاف بين الأطراف.","o":["صح","خطأ"],"c":0,"e":"عند شرح الخطوة الأولى."},
+  {"ch":4,"t":"mc","q":"تهيئة المناخ للتفاوض تهدف إلى:","o":["خلق جو من التجاوب والتفاهم واكتشاف استراتيجية الطرف الآخر","توقيع الاتفاق مباشرة","تجنب أي انطباع مبدئي","منع التعارف تمامًا"],"c":0,"e":"هذا مضمون الخطوة الثانية."},
+  {"ch":4,"t":"tf","q":"مرحلة تهيئة المناخ للتفاوض تكون عادة قصيرة وبعيدة عن الرسميات.","o":["صح","خطأ"],"c":0,"e":"وصف المنهج هذه المرحلة بهذا الشكل."},
+  {"ch":4,"t":"mc","q":"قبول الخصم للتفاوض يعد:","o":["أمرًا ثانويًا غير مهم","عملية أساسية من عمليات وخطوات التفاوض","نتيجة لاحقة بعد التوقيع","تكتيكًا فرعيًا فقط"],"c":1,"e":"قبول الخصم للتفاوض عملية أساسية من خطوات التفاوض."},
+  {"ch":4,"t":"tf","q":"يجب التأكد من أن قبول الطرف الآخر للتفاوض ليس مجرد مناورة لكسب الوقت.","o":["صح","خطأ"],"c":0,"e":"هذا التحذير ضمن الخطوة الثالثة."},
+  {"ch":4,"t":"mc","q":"من عناصر التمهيد التنفيذي للتفاوض الفعلي:","o":["اختيار أعضاء فريق التفاوض وإعدادهم","وضع الاستراتيجيات التفاوضية","الاتفاق على أجندة المفاوضات","جميع ما سبق"],"c":3,"e":"الخطوة الرابعة جمعت هذه العناصر."},
+  {"ch":4,"t":"tf","q":"اختيار مكان التفاوض وتجهيزه يعد جزءًا من الإعداد التنفيذي للتفاوض.","o":["صح","خطأ"],"c":0,"e":"ورد هذا البند صراحة في الخطوة الرابعة."},
+  {"ch":4,"t":"mc","q":"من الضغوط التفاوضية التي قد تمارس على الطرف الآخر:","o":["الوقت","التكلفة","الضغط النفسي والإعلامي","جميع ما سبق"],"c":3,"e":"هذه ضمن الضغوط التفاوضية."},
+  {"ch":4,"t":"tf","q":"لا قيمة قانونية لأي اتفاق إذا لم يتم توقيعه في شكل اتفاقية موقعة وملزمة للطرفين.","o":["صح","خطأ"],"c":0,"e":"في الخطوة السادسة من خطوات التفاوض."},
+  {"ch":5,"t":"mc","q":"منهجان رئيسيان للتفاوض هما:","o":["منهج المصلحة المشتركة ومنهج الصراع","منهج التهديد ومنهج العقاب","المنهج القانوني والمنهج الفني","المنهج الفردي والمنهج الجماعي"],"c":0,"e":"الاستراتيجيات وفق منهج المصلحة المشتركة ومنهج الصراع."},
+  {"ch":5,"t":"tf","q":"طبيعة العلاقة بين طرفي التفاوض تحدد نوع المنهج المستخدم في العملية التفاوضية.","o":["صح","خطأ"],"c":0,"e":"طبيعة العلاقة تحدد المنهج والمنهج يحدد الاستراتيجية."},
+  {"ch":5,"t":"mc","q":"من استراتيجيات منهج المصلحة المشتركة:","o":["استراتيجية التكامل","استراتيجية تطوير التعاون الحالي","استراتيجية تعميق العلاقة القائمة","جميع ما سبق"],"c":3,"e":"هذه ضمن منهج المصلحة المشتركة."},
+  {"ch":5,"t":"tf","q":"يقوم منهج المصلحة المشتركة على علاقة تعاون بين طرفين أو أكثر.","o":["صح","خطأ"],"c":0,"e":"هذا أساس منهج المصلحة المشتركة."},
+  {"ch":5,"t":"mc","q":"استراتيجية التكامل تعني:","o":["تقليل المصالح المشتركة","تطوير العلاقة حتى يصبح كل طرف مكملًا للآخر","إنهاء التعاون تدريجيًا","التفاوض حول نقطة واحدة فقط"],"c":1,"e":"التكامل يعني أن يصبح كل طرف مكملًا للآخر."},
+  {"ch":5,"t":"tf","q":"من بدائل استراتيجية التكامل: التكامل الخلفي والتكامل الأمامي والتكامل الأفقي.","o":["صح","خطأ"],"c":0,"e":"هذه البدائل الثلاثة وردت بوضوح."},
+  {"ch":5,"t":"mc","q":"التكامل الخلفي يقوم على:","o":["إضافة طرف ثالث فقط","الاستفادة من مزايا الطرف الآخر لتغذية الذات وتحقيق منفعة مشتركة","الانسحاب من التفاوض","تقليص الإنتاج المشترك"],"c":1,"e":"الاستفادة من مزايا الطرف الآخر لتغذية الذات."},
+  {"ch":5,"t":"tf","q":"التكامل الأمامي يقوم على كشف أحد الأطراف عن مزايا يمكن أن يستفيد بها الطرف الآخر لاستكمال ما يحتاجه.","o":["صح","خطأ"],"c":0,"e":"ضمن شرح التكامل الأمامي."},
+  {"ch":5,"t":"mc","q":"التكامل الأفقي يتم عن طريق:","o":["إلغاء التفاوض بين الطرفين","توسيع نطاق المصلحة المشتركة بإضافة طرف ثالث أو أطراف جديدة","تقليل الإنتاجية الجماعية","تجميد مجالات التعاون"],"c":1,"e":"التكامل الأفقي بإضافة أطراف جديدة."},
+  {"ch":5,"t":"tf","q":"تطوير التعاون الحالي يهدف إلى تحقيق أهداف عليا تعمل على تطوير المصلحة المشتركة وتوثيق التعاون.","o":["صح","خطأ"],"c":0,"e":"شرح استراتيجية تطوير التعاون الحالي."},
+  {"ch":5,"t":"mc","q":"من الأساليب الفرعية في تطوير التعاون الحالي:","o":["توسيع مجالات التعاون","الارتقاء بدرجة التعاون","كلاهما","لا شيء منهما"],"c":2,"e":"هذان الأسلوبان ضمن تطوير التعاون."},
+  {"ch":5,"t":"tf","q":"من مراحل الارتقاء بدرجة التعاون: التفهم المشترك ثم الاتفاق ثم التنفيذ ثم اقتسام العائد.","o":["صح","خطأ"],"c":0,"e":"هذه المراحل بهذا الترتيب."},
+  {"ch":5,"t":"mc","q":"من العوامل المؤثرة على قدرة الفريق على الارتقاء بمراحل التعاون:","o":["درجة التوافق في الاتجاهات والميول","مدى الرغبة في تحقيق الارتقاء المطلوب","كلاهما","لا شيء منهما"],"c":2,"e":"هذان العاملان في شرح الارتقاء."},
+  {"ch":5,"t":"tf","q":"استراتيجية تعميق العلاقة القائمة تهدف إلى الوصول إلى مدى أكبر من التعاون بين طرفين أو أكثر.","o":["صح","خطأ"],"c":0,"e":"شرح استراتيجية تعميق العلاقة القائمة."},
+  {"ch":5,"t":"mc","q":"استراتيجية توسيع نطاق التعاون تعتمد أساسًا على:","o":["واقع تاريخي طويل ممتد بين الطرفين","انعدام المعرفة السابقة","عنصر المفاجأة المطلقة","غياب البيانات الحقيقية"],"c":0,"e":"تعتمد على الواقع التاريخي الطويل."},
+  {"ch":5,"t":"tf","q":"من أساليب توسيع نطاق التعاون مده إلى مجال زمني جديد أو إلى مجال مكاني جديد.","o":["صح","خطأ"],"c":0,"e":"هذان الأسلوبان صراحة."},
+  {"ch":5,"t":"mc","q":"من استراتيجيات منهج الصراع:","o":["الإنهاك","التشتيت","إحكام السيطرة","جميع ما سبق"],"c":3,"e":"هذه ضمن منهج الصراع."},
+  {"ch":5,"t":"tf","q":"ممارسة استراتيجيات الصراع تُعلن عادةً بشكل صريح وواضح أمام الطرف الآخر.","o":["صح","خطأ"],"c":1,"e":"يعتمدون على التمويه والخداع ولا يعلنون ذلك."},
+  {"ch":5,"t":"mc","q":"استراتيجية الإنهاك تقوم على استنزاف:","o":["وقت الطرف الآخر","جهده","أمواله","جميع ما سبق"],"c":3,"e":"الإنهاك يستنزف الوقت والجهد والمال."},
+  {"ch":5,"t":"tf","q":"من صور استنزاف وقت الطرف الآخر التفاوض حول مبدأ التفاوض أو التوقيت أو المكان أو الأجندة.","o":["صح","خطأ"],"c":0,"e":"هذه ضمن استنزاف وقت الطرف الآخر."},
+  {"ch":5,"t":"mc","q":"من وسائل استنزاف جهد الطرف الآخر:","o":["إثارة عقبات قانونية مفتعلة","تكثيف البرامج غير التفاوضية","زيادة الاهتمام بالنواحي الفنية الشديدة التشعب","جميع ما سبق"],"c":3,"e":"هذه الوسائل ضمن استنزاف الجهد."},
+  {"ch":5,"t":"tf","q":"استراتيجية التشتيت تهدف إلى تفتيت وحدة وتكامل فريق التفاوض لدى الطرف الآخر.","o":["صح","خطأ"],"c":0,"e":"هذا جوهر استراتيجية التشتيت."},
+  {"ch":5,"t":"mc","q":"استراتيجية التشتيت تصلح كنوع من:","o":["الدفاع المنظم أمام ضغط تفاوضي عنيف","التعاون المشترك طويل المدى","التكامل الأمامي","التفاوض الخيري"],"c":0,"e":"من استراتيجيات الدفاع المنظم."},
+  {"ch":5,"t":"tf","q":"استراتيجية إحكام السيطرة تعني السيطرة الكاملة على جلسات التفاوض ومبادراتها.","o":["صح","خطأ"],"c":0,"e":"حشد الإمكانات بما يكفل السيطرة الكاملة."},
+  {"ch":5,"t":"mc","q":"من أسس استراتيجية إحكام السيطرة:","o":["القدرة على التنويع والتعديل في المبادرات","الحركة السريعة والاستجابة الفورية","إبقاء الطرف الآخر في مركز التابع","جميع ما سبق"],"c":3,"e":"هذه المرتكزات ضمن إحكام السيطرة."},
+  {"ch":5,"t":"tf","q":"استراتيجية الدحر تُستخدم بغض النظر عن ندرة أو قلة المعلومات عن الطرف الآخر.","o":["صح","خطأ"],"c":0,"e":"في التعريف المختصر لهذه الاستراتيجية."},
+  {"ch":5,"t":"mc","q":"استراتيجية التدمير الذاتي تقوم على:","o":["مساعدة الخصم على تحقيق أهدافه","إفشال جهود الخصم وتحطيم روحه المعنوية وإرادته","توسيع مجالات التعاون","تعميق العلاقة القائمة"],"c":1,"e":"إفشال جهود الخصم وتحطيم روحه المعنوية."},
+  {"ch":5,"t":"tf","q":"من وسائل التدمير الذاتي إفقاد الخصم مؤيديه وتحويل مصادر قوته إلى ضعف.","o":["صح","خطأ"],"c":0,"e":"ضمن شرح الاستراتيجية."},
+  {"ch":5,"t":"mc","q":"التعرف على أنماط المفاوضين مهم لأنه يساعد على:","o":["عزف الحديث على نفس الموجة وحدوث الاتصال الفعال","إلغاء الحاجة إلى الحوار","فرض النمط الشخصي على الجميع","رفض التكيف مع الآخر"],"c":0,"e":"لمعرفة كيف تعزف على نفس الموجة."},
+  {"ch":5,"t":"tf","q":"عند معرفة نمط من أمامك يمكن التخلي المؤقت عن نمطك لتسهيل الاتصال.","o":["صح","خطأ"],"c":0,"e":"ضمن الفقرة الخاصة بأنماط المفاوضين."},
+  {"ch":5,"t":"mc","q":"المفاوض الواقعي يتميز بأنه:","o":["يحب الهوامش الطويلة","يهتم بالوقت ويريد الدخول في صلب الموضوع مباشرة","يتخذ قراراته ببطء شديد بسبب العاطفة","لا يهتم بالمعلومات والحقائق"],"c":1,"e":"المفاوض الواقعي يهتم بالوقت ويدخل في صلب الموضوع."},
+  {"ch":5,"t":"tf","q":"النمط المقاتل يتصرف بعدوانية ولا يهتم باحتياجات الطرف الآخر.","o":["صح","خطأ"],"c":0,"e":"وصف المنهج للنمط المقاتل."},
+  {"ch":5,"t":"mc","q":"المفاوض الانفتاحي الودود المتعاون يتميز بأنه:","o":["يحب الناس ويغلب على تصرفاته التعاطف","يكره الطمأنينة في التفاوض","يحسم القرار تحت الضغط دائمًا","يرفض أجواء الود"],"c":0,"e":"محب للناس وتغلب على تصرفاته العاطفة والتعاطف."},
+  {"ch":5,"t":"tf","q":"النمط التحليلي لا يقتنع بأي عرض إلا بعد معرفة كل التفاصيل وتفاصيل التفاصيل.","o":["صح","خطأ"],"c":0,"e":"هذا الوصف نصًا تقريبًا."},
+  {"ch":5,"t":"mc","q":"النمط الهجومي يستخدم:","o":["المداعبة فقط","الهجوم الاستفزازي المستمر في كافة مراحل المفاوضات","الصمت فقط","الانسحاب المبكر دائمًا"],"c":1,"e":"وصف المنهج للنمط الهجومي."},
+  {"ch":5,"t":"tf","q":"من طرق الخروج من المأزق التفاوضي تغيير مكان التفاوض أو تأجيله أو تغيير الأطراف.","o":["صح","خطأ"],"c":0,"e":"هذه الآليات ضمن وسائل الخروج من المأزق."},
+  {"ch":5,"t":"mc","q":"إذا وصلت المفاوضات إلى طريق مسدود وكان الاتفاق لن يتم فهذا يعني:","o":["يجب استمرارها","لا داعي لاستمرارها وتتوقف تمامًا","يجب تجاهل كل شيء والبدء من الصفر","يجب قبول أي اتفاق كيفما كان"],"c":1,"e":"لا داعي لاستمرارها إذا كان واضحًا أن الاتفاق لن يتم."},
+  {"ch":5,"t":"tf","q":"من سمات المفاوض الناجح الحكم السليم للأمور والقدرة على التمييز بين القضايا الأساسية والفرعية.","o":["صح","خطأ"],"c":0,"e":"ضمن سمات المفاوض الناجح."},
+  {"ch":5,"t":"mc","q":"من سمات المفاوض الناجح:","o":["الثقة بالنفس القائمة على المعرفة","القدرة على الاستماع بعقل متفتح","الالتزام بالنزاهة وإرضاء الأطراف","جميع ما سبق"],"c":3,"e":"هذه السمات ضمن مهارات المفاوض الناجح."},
+  {"ch":5,"t":"tf","q":"من تكتيكات التفاوض: التسويف أو الصمت المؤقت، المفاجأة، الأمر الواقع، التدرج خطوة خطوة.","o":["صح","خطأ"],"c":0,"e":"هذه التكتيكات ضمن قائمة تكتيكات التفاوض."}
+];
+
+/* ==============================
+   بيانات كبسولات الفصول
+   ============================== */
+var abbr=[
+  {"ch":1,"s":"الفصل الأول","f":"مهارات الاتصال","a":"<b>مفهوم الاتصال:</b> عملية نقل وتبادل المعلومات والأفكار والمشاعر باستخدام رموز مشتركة لتحقيق الفهم المتبادل.<br><b>العناصر الستة:</b> المرسل، المستقبل، الرسالة، القناة، التغذية الراجعة، والعوامل المعيقة.<br><b>أنواعه:</b> اتصال لفظي (منطوق ومكتوب) واتصال غير لفظي يعكس المشاعر والنوايا الكامنة."},
+  {"ch":2,"s":"الفصل الثاني","f":"مهارات الاتصال الفعال","a":"<b>الاتصال الفعال:</b> تبادل المعلومات وفهمها بدقة بنجاح بنفس المعنى الذي يقصده المرسل تماماً.<br><b>العوائق:</b> عوائق نفسية وسلوكية، عوائق لغوية دلالية، عوائق مادية بيئية، وعوائق تنظيمية.<br><b>التغلب عليها:</b> الإنصات والتحليل الواعي وتبسيط اللغة."},
+  {"ch":3,"s":"الفصل الثالث","f":"الاتصال في بيئة العمل","a":"<b>أهميته:</b> شرايين المؤسسة لنقل البيانات واتخاذ القرارات الإدارية والمتابعة.<br><b>قنوات الاتصال الرسمية:</b> اتصالات هابطة، اتصالات صاعدة، اتصالات أفقية.<br><b>الاتصالات غير الرسمية:</b> تقوم على العلاقات الشخصية وتتميز بالسرعة الفائقة."},
+  {"ch":4,"s":"الفصل الرابع","f":"التفاوض","a":"<b>مفهوم التفاوض:</b> أسلوب اتصال عقلي ومباحثات ديناميكية لحل مشكلة خلافية وبلوغ اتفاق يحقق مكاسب مشتركة.<br><b>الفرق عن المساومة:</b> المساومة منافسة شرسة (مكسب/خسارة)، بينما التفاوض تعاون إقناعي (مكسب/مكسب).<br><b>العناصر:</b> الموقف التفاوضي، الأطراف، القضية، والهدف."},
+  {"ch":5,"s":"الفصل الخامس","f":"استراتيجيات وتكتيكات التفاوض","a":"<b>مناهج التفاوض:</b> ينقسم إلى منهجين رئيسيين.<br><b>1- منهج المصلحة المشتركة (مكسب/مكسب):</b> يقوم على الثقة والتعاون وأبرز استراتيجياته (التكامل، تطوير التعاون، تعميق العلاقات).<br><b>2- منهج الصراع (مكسب/خسارة):</b> يقوم على المنافسة الشرسة والضغط وأبرز استراتيجياته (الإنهاك، التشتيت، إحكام السيطرة)."}
+];
+
+/* ==============================
+   متغيرات الحالة
+   ============================== */
+var exam={qs:[],ans:[],idx:0,timer:null,time:0};
+var selectedSetup={qcnt:200,qtm:0,qtp:'all'};
+var _mcb=null;
+
+/* ==============================
+   دوال التخزين المحلي
+   ============================== */
+function gH(){try{return JSON.parse(localStorage.getItem('comm_hist_v3'))||[]}catch(e){return[]}}
+function sH(h){try{localStorage.setItem('comm_hist_v3',JSON.stringify(h))}catch(e){}}
+function gB(){try{return JSON.parse(localStorage.getItem('comm_badge_v3'))||[]}catch(e){return[]}}
+function sB(b){try{localStorage.setItem('comm_badge_v3',JSON.stringify(b))}catch(e){}}
+
+/* ==============================
+   إشعار Toast
+   ============================== */
+function showToast(msg,dur){
+  var t=document.getElementById('toast');
+  var m=document.getElementById('toast-msg');
+  if(!t||!m)return;
+  m.textContent=msg;t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show')},dur||2500);
+}
+
+/* ==============================
+   دوال التنقل والواجهة
+   ============================== */
+function showSection(id){
+  document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('on')});
+  var el=document.getElementById(id);
+  if(el){el.classList.add('on');window.scrollTo({top:0,behavior:'smooth'})}
+  if(id==='results')renderResults();
+}
+
+function toggleTheme(){
+  document.body.classList.toggle('dk');
+  var i=document.querySelector('#thm i');
+  if(i){i.classList.toggle('fa-moon');i.classList.toggle('fa-sun')}
+  try{localStorage.setItem('comm_th_v3',document.body.classList.contains('dk')?'1':'0')}catch(e){}
+}
+
+function confirmModal(msg,cb){
+  _mcb=cb;
+  document.getElementById('mom').textContent=msg;
+  document.getElementById('mo').classList.add('vi');
+}
+function closeModal(){
+  document.getElementById('mo').classList.remove('vi');
+}
+
+/* ==============================
+   بناء شبكات الإعدادات
+   ============================== */
+function buildSetupGrids(){
+  var qGrid=document.getElementById('qcnt-grid');
+  if(qGrid){
+    [20,50,100,150,200].forEach(function(n){
+      qGrid.innerHTML+='<button class="opt-btn'+(n===200?' sl':'')+'" data-type="qcnt" data-val="'+n+'">'+n+'</button>';
+    });
+  }
+  var tGrid=document.getElementById('qtm-grid');
+  if(tGrid){
+    [{v:15,l:'15 د'},{v:30,l:'30 د'},{v:60,l:'60 د'},{v:0,l:'بدون مؤقت'}].forEach(function(t){
+      tGrid.innerHTML+='<button class="opt-btn'+(t.v===0?' sl':'')+'" data-type="qtm" data-val="'+t.v+'">'+t.l+'</button>';
+    });
+  }
+  var tpGrid=document.getElementById('qtp-grid');
+  if(tpGrid){
+    [{v:'all',l:'الكل'},{v:'mc',l:'MCQ'},{v:'tf',l:'صح/خطأ'}].forEach(function(t){
+      tpGrid.innerHTML+='<button class="opt-btn'+(t.v==='all'?' sl':'')+'" data-type="qtp" data-val="'+t.v+'">'+t.l+'</button>';
+    });
+  }
+}
+
+/* ==============================
+   ربط جميع الأحداث
+   ============================== */
+function bindAll(){
+  // أزرار التنقل data-n
+  document.querySelectorAll('[data-n]').forEach(function(el){
+    el.addEventListener('click',function(e){
+      e.stopPropagation();
+      showSection(this.getAttribute('data-n'));
+    });
+  });
+  // بطاقات لوحة التحكم data-s
+  document.querySelectorAll('[data-s]').forEach(function(el){
+    el.addEventListener('click',function(e){
+      if(e.target.closest('[data-n]')||e.target.closest('button'))return;
+      showSection(this.getAttribute('data-s'));
+    });
+  });
+  // زر الرئيسية
+  document.getElementById('hom').addEventListener('click',function(){showSection('dashboard')});
+  // تبديل الوضع
+  document.getElementById('thm').addEventListener('click',toggleTheme);
+  // بحث الأسئلة المقالية
+  document.getElementById('esrc').addEventListener('input',renderEssays);
+  // أزرار الإعدادات
+  document.querySelectorAll('.opt-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('.opt-btn[data-type="'+this.dataset.type+'"]').forEach(function(b){b.classList.remove('sl')});
+      this.classList.add('sl');
+      selectedSetup[this.dataset.type]=this.dataset.val==='0'?0:parseInt(this.dataset.val)||this.dataset.val;
+    });
+  });
+  // بدء الامتحان
+  document.getElementById('goBtn').addEventListener('click',function(){startExam(null)});
+  // أزرار التنقل بين الأسئلة
+  document.getElementById('pvb').addEventListener('click',prevQ);
+  document.getElementById('nxb').addEventListener('click',nextQ);
+  document.getElementById('smb').addEventListener('click',function(){confirmModal('هل أنت متأكد من تسليم الامتحان؟',function(){doSubmit(false)})});
+  // أزرار النتيجة
+  document.getElementById('rtry').addEventListener('click',function(){showSection('exam-setup')});
+  document.getElementById('rerv').addEventListener('click',toggleErrors);
+  // أزرار النافذة المنبثقة
+  document.getElementById('moy').addEventListener('click',function(){var cb=_mcb;_mcb=null;closeModal();if(cb)cb()});
+  document.getElementById('mon').addEventListener('click',function(){_mcb=null;closeModal()});
+  // إغلاق النافذة بالضغط خارجها
+  document.getElementById('mo').addEventListener('click',function(e){
+    if(e.target===this){_mcb=null;closeModal()}
+  });
+}
+
+/* ==============================
+   عرض الأسئلة المقالية
+   ============================== */
+function renderEssays(){
+  var sr=(document.getElementById('esrc')||{}).value||'';
+  sr=sr.toLowerCase();
+  var fl=essayQ.filter(function(q){return q.q.toLowerCase().includes(sr)});
+  var el=document.getElementById('elist');
+  if(!el)return;
+  if(!fl.length){el.innerHTML='<div class="nr"><i class="fas fa-search"></i><p>لا توجد نتائج مطابقة</p></div>';return}
+  el.innerHTML=fl.map(function(q){
+    return '<div class="cc"><h4><i class="fas fa-circle-question" style="color:var(--s);margin-left:6px"></i>'+q.q+'</h4><div class="bg"><button class="b b1" data-toggle="sa-'+q.id+'"><i class="fas fa-compress"></i> إجابة مختصرة</button><button class="b b5" data-toggle="fa-'+q.id+'"><i class="fas fa-expand"></i> الإجابة الكاملة بالنص</button></div><div id="sa-'+q.id+'" class="ab s">'+q.sa+'</div><div id="fa-'+q.id+'" class="ab f">'+q.fa+'</div></div>';
+  }).join('');
+  // ربط أزرار إظهار/إخفاء الإجابات
+  el.querySelectorAll('[data-toggle]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.getElementById(this.getAttribute('data-toggle')).classList.toggle('v');
+    });
+  });
+}
+
+/* ==============================
+   عرض كبسولات الفصول
+   ============================== */
+function renderAbbr(){
+  var tb=document.getElementById('atbd');
+  if(!tb)return;
+  tb.innerHTML=abbr.map(function(a){
+    return '<div class="chap-card"><div class="chap-title"><i class="fas fa-book"></i> '+a.s+': '+a.f+'</div><div class="chap-text">'+a.a+'</div><button class="b b1" onclick="startChapterExam('+a.ch+')"><i class="fas fa-play"></i> امتحن على هذا الفصل فقط</button></div>';
+  }).join('');
+}
+
+/* ==============================
+   بدء الامتحان
+   ============================== */
+function startChapterExam(chId){startExam(chId)}
+
+function startExam(chapterFilter){
+  var pool=quizQ.slice(); // نسخة من المصفوفة
+  var tm=0;
+  if(chapterFilter!==null){
+    // امتحان فصل محدد
+    pool=pool.filter(function(q){return q.ch===chapterFilter});
+    tm=0;
+  }else{
+    // امتحان شامل
+    var cnt=selectedSetup.qcnt;
+    var tp=selectedSetup.qtp;
+    tm=selectedSetup.qtm;
+    if(tp==='mc')pool=pool.filter(function(q){return q.t==='mc'});
+    else if(tp==='tf')pool=pool.filter(function(q){return q.t==='tf'});
+  }
+  if(!pool.length){confirmModal('لا توجد أسئلة كافية.',function(){});return}
+  // خلط عشوائي
+  for(var i=pool.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=pool[i];pool[i]=pool[j];pool[j]=tmp}
+  // تحديد العدد
+  if(chapterFilter===null){pool=pool.slice(0,Math.min(selectedSetup.qcnt,pool.length))}
+
+  exam.qs=pool;
+  exam.ans=new Array(exam.qs.length).fill(null);
+  exam.idx=0;
+  exam.time=tm>0?tm*60:0;
+
+  showSection('exam-active');
+  renderQ();
+  clearInterval(exam.timer);
+
+  if(exam.time>0){
+    exam.timer=setInterval(function(){
+      exam.time--;
+      var m=Math.floor(Math.max(0,exam.time)/60).toString().padStart(2,'0');
+      var s=(Math.max(0,exam.time)%60).toString().padStart(2,'0');
+      document.getElementById('tdsp').textContent=m+':'+s;
+      if(exam.time<=0){clearInterval(exam.timer);doSubmit(true)}
+    },1000);
+  }else{
+    document.getElementById('tdsp').textContent='∞';
+  }
+}
+
+/* ==============================
+   عرض السؤال الحالي
+   ============================== */
+function renderQ(){
+  var q=exam.qs[exam.idx];
+  if(!q)return;
+  var i=exam.idx;
+  document.getElementById('cqn').textContent=i+1;
+  document.getElementById('tqn').textContent=exam.qs.length;
+  document.getElementById('pfl').style.width=((i+1)/exam.qs.length*100)+'%';
+  document.getElementById('qtxt').textContent=q.q;
+
+  var grid=document.getElementById('ogrd');
+  var html='';
+  if(q.t==='mc'){
+    q.o.forEach(function(opt,oi){
+      html+='<button class="ob'+(exam.ans[i]===oi?' sl':'')+'" data-ans="'+oi+'">'+opt+'</button>';
+    });
+  }else{
+    html+='<button class="ob'+(exam.ans[i]===0?' sl':'')+'" data-ans="0"><i class="fas fa-check-circle"></i> صح</button>';
+    html+='<button class="ob'+(exam.ans[i]===1?' sl':'')+'" data-ans="1"><i class="fas fa-times-circle"></i> خطأ</button>';
+  }
+  grid.innerHTML=html;
+
+  // ربط أزرار الإجابات
+  grid.querySelectorAll('[data-ans]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      exam.ans[exam.idx]=parseInt(this.getAttribute('data-ans'));
+      renderQ();
+    });
+  });
+
+  document.getElementById('pvb').disabled=(i===0);
+  document.getElementById('nxb').innerHTML=i===exam.qs.length-1?'<i class="fas fa-check"></i> إنهاء':'التالي <i class="fas fa-arrow-left"></i>';
+}
+
+function nextQ(){
+  if(exam.idx<exam.qs.length-1){exam.idx++;renderQ()}
+  else{confirmModal('هل أنت متأكد من إنهاء الامتحان؟',function(){doSubmit(false)})}
+}
+function prevQ(){
+  if(exam.idx>0){exam.idx--;renderQ()}
+}
+
+/* ==============================
+   تسليم الامتحان
+   ============================== */
+function doSubmit(auto){
+  closeModal();
+  clearInterval(exam.timer);
+  var correct=0;
+  var wrongs=[];
+  exam.qs.forEach(function(q,i){
+    if(exam.ans[i]===q.c){correct++}
+    else{
+      var ua=q.t==='mc'?(q.o[exam.ans[i]]||'لم يتم الإجابة'):(exam.ans[i]===0?'صح':(exam.ans[i]===1?'خطأ':'لم يتم الإجابة'));
+      wrongs.push({q:q.q,ua:ua,ca:q.t==='mc'?q.o[q.c]:(q.c===0?'صح':'خطأ'),e:q.e});
+    }
+  });
+  var total=exam.qs.length;
+  var pct=Math.round(correct/total*100);
+  var ev='';var ec='var(--ok)';
+  if(pct<50){ev='يحتاج تحسين كبير';ec='var(--no)'}
+  else if(pct<70){ev='مقبول - يحتاج مراجعة';ec='var(--wn)'}
+  else if(pct<85){ev='جيد جداً';ec='var(--wn)'}
+  else{ev='ممتاز';ec='var(--ok)'}
+
+  document.getElementById('rcir').style.borderColor=ec;
+  document.getElementById('rcir').style.color=ec;
+  document.getElementById('rpct').textContent=pct+'%';
+  document.getElementById('revl').textContent=ev;
+  document.getElementById('revl').style.color=ec;
+  document.getElementById('rcrt').textContent=correct;
+  document.getElementById('rwrg').textContent=total-correct;
+  document.getElementById('rerv').style.display=wrongs.length>0?'inline-flex':'none';
+
+  var ec2=document.getElementById('ercon');
+  if(ec2){
+    ec2.innerHTML=wrongs.map(function(w){
+      return '<div class="erc"><p style="font-weight:700;margin-bottom:5px"><i class="fas fa-question-circle" style="color:var(--s);margin-left:6px"></i> '+w.q+'</p><p style="color:var(--no);font-weight:600;margin:10px 0"><i class="fas fa-xmark" style="margin-left:4px"></i> إجابتك: '+w.ua+'</p><div class="cab"><p style="color:var(--ok);font-weight:600"><i class="fas fa-check" style="margin-left:4px"></i> الصحيحة: '+w.ca+'</p><p style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--bd)"><b style="color:var(--s)"><i class="fas fa-lightbulb" style="margin-left:4px"></i> التعليل:</b> '+w.e+'</p></div></div>';
+    }).join('');
+    ec2.style.display='none';
+  }
+
+  // حفظ النتيجة
+  var h=gH();
+  h.push({date:new Date().toLocaleDateString('ar-EG'),score:correct,total:total,pct:pct});
+  sH(h);
+  checkBadges(pct,total);
+  showSection('exam-result');
+
+  if(auto){showToast('انتهى الوقت! تم تسليم الامتحان تلقائيًا',3500)}
+}
+
+function toggleErrors(){
+  var c=document.getElementById('ercon');
+  c.style.display=c.style.display==='none'?'block':'none';
+}
+
+/* ==============================
+   الأوسمة
+   ============================== */
+function checkBadges(pct,total){
+  var b=gB();var changed=false;
+  if(!b.includes('first')){b.push('first');changed=true}
+  if(pct>=90&&!b.includes('excellence')){b.push('excellence');changed=true}
+  if(total>=100&&!b.includes('marathon')){b.push('marathon');changed=true}
+  if(changed){sB(b);showToast('مبروك! حصلت على وسام جديد',3000)}
+}
+
+/* ==============================
+   عرض النتائج والأوسمة
+   ============================== */
+function renderResults(){
+  var h=gH();
+  var sg=document.getElementById('stg');
+  var hl=document.getElementById('hls');
+  if(!sg||!hl)return;
+  if(!h.length){
+    sg.innerHTML='';
+    hl.innerHTML='<div class="nr"><i class="fas fa-chart-line"></i><p>لم يتم حل أي امتحانات بعد</p></div>';
+  }else{
+    var tot=h.length;
+    var best=Math.max.apply(null,h.map(function(x){return x.pct}));
+    var avg=Math.round(h.reduce(function(s,x){return s+x.pct},0)/tot);
+    var last=h[h.length-1].pct;
+    sg.innerHTML='<div class="sc"><div class="sv">'+tot+'</div><div class="sl">عدد الامتحانات</div></div><div class="sc"><div class="sv">'+best+'%</div><div class="sl">أفضل نتيجة</div></div><div class="sc"><div class="sv">'+avg+'%</div><div class="sl">متوسط الأداء</div></div><div class="sc"><div class="sv">'+last+'%</div><div class="sl">آخر نتيجة</div></div>';
+    hl.innerHTML=h.slice().reverse().map(function(x){
+      return '<div class="cc" style="display:flex;justify-content:space-between;align-items:center"><div><b>التاريخ:</b> '+x.date+'</div><div><b>الدرجة:</b> '+x.score+'/'+x.total+'</div><div style="font-weight:900;color:'+(x.pct>=80?'var(--ok)':(x.pct>=50?'var(--wn)':'var(--no)'))+'">'+x.pct+'%</div></div>';
+    }).join('');
+  }
+  // الأوسمة
+  var badgesData=[
+    {id:'first',icon:'fa-medal',name:'البداية'},
+    {id:'excellence',icon:'fa-award',name:'المفاوض الذهبي (90%+)'},
+    {id:'marathon',icon:'fa-running',name:'خبير الاتصال (100+ سؤال)'}
+  ];
+  var userBadges=gB();
+  document.getElementById('badges').innerHTML=badgesData.map(function(b){
+    return '<div class="badge-card '+(userBadges.includes(b.id)?'earned':'')+'"><i class="fas '+b.icon+'"></i><span>'+b.name+'</span></div>';
+  }).join('');
+}
+
+/* ==============================
+   التهيئة عند تحميل الصفحة
+   ============================== */
+window.addEventListener('DOMContentLoaded',function(){
+  buildSetupGrids();
+  bindAll();
+  renderEssays();
+  renderAbbr();
+  // استعادة الوضع الليلي
+  try{
+    if(localStorage.getItem('comm_th_v3')==='1'){
+      document.body.classList.add('dk');
+      var i=document.querySelector('#thm i');
+      if(i){i.classList.remove('fa-moon');i.classList.add('fa-sun')}
+    }
+  }catch(e){}
+});
+</script>
+</body>
+</html>
